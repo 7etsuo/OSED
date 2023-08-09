@@ -1,0 +1,30 @@
+.block 
+{
+    r @$t0 = 0
+    .foreach ( module {lm 1m})
+    {
+        r @$t1 = 0
+        $$ Change the 5 to how ever many modules you would like to display
+        .if (@$t0 <= 5)
+        {
+            .echo module
+            .foreach (info {!lmi module}) 
+            {
+                .if (@$t1 == 8)
+                {
+                    r @$t2 = 0
+                    .foreach (offset {dt ntdll!_IMAGE_DOS_HEADER info})
+                    {
+                        .if (@$t2 == 0n77)
+                        {
+                            dt ntdll!_IMAGE_OPTIONAL_HEADER info + offset + 0x18
+                        }
+                        r @$t2 = @$t2 +1
+                    }
+                }
+                r @$t1 = @$t1 + 1
+            }
+        }
+        r @$t0 = @$t0 + 1
+    }
+}

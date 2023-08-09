@@ -1,0 +1,1 @@
+runas /user:CLIENT\Administrator /savecred "\"C:\Windows\regedit.exe\" C:\Users\Offsec\Desktop\windbg.reg"
