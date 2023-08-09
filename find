@@ -1,0 +1,922 @@
+struct.pack('<L', 0x2d70e)  # int3  ; int3  ; mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x38], eax ; ret
+struct.pack('<L', 0x4b23e)  # int3  ; int3  ; mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x54], eax ; ret
+struct.pack('<L', 0x6657e)  # int3  ; int3  ; mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x5C], eax ; ret
+struct.pack('<L', 0x3a21e)  # int3  ; int3  ; mov eax, dword [esp+0x0C] ; ret
+struct.pack('<L', 0x6a86e)  # int3  ; int3  ; mov ecx, dword [esp+0x04] ; mov eax, dword [0x100E0110] ; mov dword [0x100E0110], ecx ; ret
+struct.pack('<L', 0x57d8e)  # int3  ; int3  ; push esi ; mov esi, dword [esp+0x0C] ; mov eax, dword [esi+0x10] ; call eax
+struct.pack('<L', 0x5f14f)  # int3  ; mov eax, dword [0x100DFBD0] ; ret
+struct.pack('<L', 0x6592f)  # int3  ; mov eax, dword [0x100DFED8] ; ret
+struct.pack('<L', 0x173f)  # int3  ; mov eax, dword [0x100E1A90] ; ret
+struct.pack('<L', 0x174f)  # int3  ; mov eax, dword [0x100E1A94] ; ret
+struct.pack('<L', 0x177f)  # int3  ; mov eax, dword [0x100E1A98] ; ret
+struct.pack('<L', 0x16df)  # int3  ; mov eax, dword [0x100E1A9C] ; ret
+struct.pack('<L', 0x16ef)  # int3  ; mov eax, dword [0x100E1AA0] ; ret
+struct.pack('<L', 0x16ff)  # int3  ; mov eax, dword [0x100E1AA4] ; ret
+struct.pack('<L', 0x25cf)  # int3  ; mov eax, dword [0x100E1AD8] ; ret
+struct.pack('<L', 0x2b8af)  # int3  ; mov eax, dword [0x100E1E7C] ; ret
+struct.pack('<L', 0x5f13f)  # int3  ; mov eax, dword [esp+0x04] ; mov dword [0x100DFBD0], eax ; ret
+struct.pack('<L', 0x6593f)  # int3  ; mov eax, dword [esp+0x04] ; mov dword [0x100DFED8], eax ; ret
+struct.pack('<L', 0x175f)  # int3  ; mov eax, dword [esp+0x04] ; mov dword [0x100E1A90], eax ; ret
+struct.pack('<L', 0x176f)  # int3  ; mov eax, dword [esp+0x04] ; mov dword [0x100E1A94], eax ; ret
+struct.pack('<L', 0x178f)  # int3  ; mov eax, dword [esp+0x04] ; mov dword [0x100E1A98], eax ; ret
+struct.pack('<L', 0x170f)  # int3  ; mov eax, dword [esp+0x04] ; mov dword [0x100E1A9C], eax ; ret
+struct.pack('<L', 0x171f)  # int3  ; mov eax, dword [esp+0x04] ; mov dword [0x100E1AA0], eax ; ret
+struct.pack('<L', 0x172f)  # int3  ; mov eax, dword [esp+0x04] ; mov dword [0x100E1AA4], eax ; ret
+struct.pack('<L', 0x25bf)  # int3  ; mov eax, dword [esp+0x04] ; mov dword [0x100E1AD8], eax ; ret
+struct.pack('<L', 0x279af)  # int3  ; mov eax, dword [esp+0x04] ; mov dword [0x100E1E74], eax ; ret
+struct.pack('<L', 0x2aa0f)  # int3  ; mov eax, dword [esp+0x04] ; mov dword [0x100E1E78], eax ; ret
+struct.pack('<L', 0x2b89f)  # int3  ; mov eax, dword [esp+0x04] ; mov dword [0x100E1E7C], eax ; ret
+struct.pack('<L', 0x2d0bf)  # int3  ; mov eax, dword [esp+0x04] ; mov dword [0x100E1E80], eax ; ret
+struct.pack('<L', 0x3789f)  # int3  ; mov eax, dword [esp+0x04] ; mov dword [0x100E1E84], eax ; ret
+struct.pack('<L', 0x37dcf)  # int3  ; mov eax, dword [esp+0x04] ; mov dword [0x100E1E88], eax ; ret
+struct.pack('<L', 0x4185f)  # int3  ; mov eax, dword [esp+0x04] ; mov dword [0x100E2490], eax ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x7563f)  # int3  ; mov eax, dword [esp+0x04] ; mov dword [0x100E3C0C], eax ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x83fff)  # int3  ; mov eax, dword [esp+0x04] ; mov dword [0x100E3C40], eax ; ret
+struct.pack('<L', 0x459ef)  # int3  ; mov eax, dword [esp+0x04] ; mov dword [eax+0x04], 0x00000030 ; mov dword [eax], 0x00000000 ; mov dword [eax+0x58], 0x00000000 ; ret
+struct.pack('<L', 0x448df)  # int3  ; mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x04] ; inc dword [eax+0x08] ; ret
+struct.pack('<L', 0x5e83f)  # int3  ; mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x04] ; ret
+struct.pack('<L', 0x4b27f)  # int3  ; mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x08] ; and eax, dword [esp+0x08] ; ret
+struct.pack('<L', 0x5e84f)  # int3  ; mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x08] ; ret
+struct.pack('<L', 0x4b21f)  # int3  ; mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x10] ; ret
+struct.pack('<L', 0x3915f)  # int3  ; mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x14] ; and eax, dword [esp+0x08] ; ret
+struct.pack('<L', 0x71e1f)  # int3  ; mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x14] ; ret
+struct.pack('<L', 0x87dbf)  # int3  ; mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x18] ; ret
+struct.pack('<L', 0x87dcf)  # int3  ; mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x1C] ; ret
+struct.pack('<L', 0x87ddf)  # int3  ; mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x20] ; ret
+struct.pack('<L', 0x87def)  # int3  ; mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x24] ; ret
+struct.pack('<L', 0x87dff)  # int3  ; mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x28] ; ret
+struct.pack('<L', 0x87e0f)  # int3  ; mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x2C] ; ret
+struct.pack('<L', 0x2d6df)  # int3  ; mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x30] ; ret
+struct.pack('<L', 0x2d6ff)  # int3  ; mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x34] ; ret
+struct.pack('<L', 0x2d71f)  # int3  ; mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x38] ; ret
+struct.pack('<L', 0x87e1f)  # int3  ; mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x3C] ; ret
+struct.pack('<L', 0x665af)  # int3  ; mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x4C] ; ret
+struct.pack('<L', 0x6683f)  # int3  ; mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x50] ; ret
+struct.pack('<L', 0x6684f)  # int3  ; mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x54] ; ret
+struct.pack('<L', 0x6658f)  # int3  ; mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x58] ; ret
+struct.pack('<L', 0x6659f)  # int3  ; mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x60] ; ret
+struct.pack('<L', 0x42e6f)  # int3  ; mov eax, dword [esp+0x04] ; mov eax, dword [eax] ; imul eax, eax, 0x0D ; ret
+struct.pack('<L', 0x379f)  # int3  ; mov eax, dword [esp+0x04] ; mov eax, dword [eax] ; mov ecx, dword [esp+0x08] ; sub eax, dword [ecx] ; ret
+struct.pack('<L', 0x8387f)  # int3  ; mov eax, dword [esp+0x04] ; mov eax, dword [eax] ; ret
+struct.pack('<L', 0x2b03f)  # int3  ; mov eax, dword [esp+0x04] ; mov ecx, dword [eax+0x3C] ; mov dword [esp+0x04], eax ; mov eax, dword [ecx+0x08] ; jmp eax
+struct.pack('<L', 0x2cd1f)  # int3  ; mov eax, dword [esp+0x04] ; mov ecx, dword [eax+0x44] ; mov dword [esp+0x04], eax ; mov edx, dword [ecx+0x04] ; jmp edx
+struct.pack('<L', 0x460af)  # int3  ; mov eax, dword [esp+0x04] ; mov ecx, dword [eax] ; mov dword [esp+0x04], eax ; mov eax, dword [ecx+0x14] ; jmp eax
+struct.pack('<L', 0x4b20f)  # int3  ; mov eax, dword [esp+0x04] ; mov ecx, dword [eax] ; mov dword [esp+0x04], eax ; mov eax, dword [ecx+0x18] ; jmp eax
+struct.pack('<L', 0x4b1ff)  # int3  ; mov eax, dword [esp+0x04] ; mov ecx, dword [eax] ; mov eax, dword [ecx+0x04] ; ret
+struct.pack('<L', 0x4b24f)  # int3  ; mov eax, dword [esp+0x04] ; mov ecx, dword [eax] ; mov eax, dword [ecx+0x0C] ; ret
+struct.pack('<L', 0x4b22f)  # int3  ; mov eax, dword [esp+0x04] ; mov ecx, dword [eax] ; mov eax, dword [ecx+0x10] ; ret
+struct.pack('<L', 0x64c2f)  # int3  ; mov eax, dword [esp+0x04] ; mov ecx, dword [eax] ; mov eax, dword [ecx+0x14] ; ret
+struct.pack('<L', 0x3919f)  # int3  ; mov eax, dword [esp+0x04] ; mov ecx, dword [eax] ; mov eax, dword [ecx] ; ret
+struct.pack('<L', 0x6c52f)  # int3  ; mov eax, dword [esp+0x04] ; mov ecx, dword [esp+0x08] ; mov dword [eax+0x14], 0x100E02F8 ; mov dword [eax+0x18], ecx ; ret
+struct.pack('<L', 0x6c59f)  # int3  ; mov eax, dword [esp+0x04] ; mov ecx, dword [esp+0x08] ; mov dword [eax+0x14], 0x100E0308 ; mov dword [eax+0x18], ecx ; ret
+struct.pack('<L', 0x6675f)  # int3  ; mov eax, dword [esp+0x04] ; mov ecx, dword [esp+0x08] ; mov dword [eax+0x18], ecx ; mov dword [eax+0x24], 0x10065E50 ; ret
+struct.pack('<L', 0x4b25f)  # int3  ; mov eax, dword [esp+0x04] ; mov ecx, dword [esp+0x08] ; or dword [eax+0x08], ecx ; ret
+struct.pack('<L', 0x3916f)  # int3  ; mov eax, dword [esp+0x04] ; mov ecx, dword [esp+0x08] ; or dword [eax+0x14], ecx ; ret
+struct.pack('<L', 0x2d08f)  # int3  ; mov eax, dword [esp+0x04] ; or dword [eax+0x1C], 0x01 ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x2750f)  # int3  ; mov eax, dword [esp+0x04] ; or dword [eax+0x3C], 0x06 ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x43bf)  # int3  ; mov eax, dword [esp+0x04] ; push eax ; call dword [0x100930EC]
+struct.pack('<L', 0x1d4f)  # int3  ; mov eax, dword [esp+0x04] ; push eax ; call dword [0x100D5070]
+struct.pack('<L', 0x1d7f)  # int3  ; mov eax, dword [esp+0x04] ; push eax ; call dword [0x100D5084]
+struct.pack('<L', 0x511cf)  # int3  ; mov eax, dword [esp+0x08] ; inc dword [eax] ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x533ef)  # int3  ; mov eax, dword [esp+0x08] ; mov ecx, dword [eax+0x14] ; mov edx, dword [esp+0x04] ; mov dword [edx], ecx ; ret
+struct.pack('<L', 0x87bdf)  # int3  ; mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x04], eax ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x3917f)  # int3  ; mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x04], eax ; ret
+struct.pack('<L', 0x87bff)  # int3  ; mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x08], eax ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x3918f)  # int3  ; mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x08], eax ; ret
+struct.pack('<L', 0x87c1f)  # int3  ; mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x0C], eax ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x87c3f)  # int3  ; mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x10], eax ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x2030f)  # int3  ; mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x10], eax ; ret
+struct.pack('<L', 0x87c5f)  # int3  ; mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x14], eax ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x7719f)  # int3  ; mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x14], eax ; ret
+struct.pack('<L', 0x87c7f)  # int3  ; mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x18], eax ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x2031f)  # int3  ; mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x18], eax ; ret
+struct.pack('<L', 0x87c9f)  # int3  ; mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x1C], eax ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x87cbf)  # int3  ; mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x20], eax ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x87cdf)  # int3  ; mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x24], eax ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x87cff)  # int3  ; mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x28], eax ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x87d1f)  # int3  ; mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x2C], eax ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x2d6cf)  # int3  ; mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x30], eax ; ret
+struct.pack('<L', 0x87d3f)  # int3  ; mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x34], eax ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x2d6ef)  # int3  ; mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x34], eax ; ret
+struct.pack('<L', 0x87d5f)  # int3  ; mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x38], eax ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x2d70f)  # int3  ; mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x38], eax ; ret
+struct.pack('<L', 0x87d7f)  # int3  ; mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x3C], eax ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x87d9f)  # int3  ; mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x40], eax ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x4b23f)  # int3  ; mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x54], eax ; ret
+struct.pack('<L', 0x6657f)  # int3  ; mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x5C], eax ; ret
+struct.pack('<L', 0x1d5f)  # int3  ; mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; push eax ; push ecx ; call dword [0x100D5078]
+struct.pack('<L', 0x2afdf)  # int3  ; mov eax, dword [esp+0x0C] ; mov ecx, dword [eax+0x3C] ; mov dword [esp+0x0C], eax ; mov ecx, dword [ecx+0x04] ; jmp ecx
+struct.pack('<L', 0x3a21f)  # int3  ; mov eax, dword [esp+0x0C] ; ret
+struct.pack('<L', 0x27c8f)  # int3  ; mov eax, dword [esp+0x10] ; mov ecx, dword [eax+0x08] ; mov dword [esp+0x10], eax ; mov ecx, dword [ecx+0x04] ; jmp ecx
+struct.pack('<L', 0x2af5f)  # int3  ; mov eax, dword [esp+0x10] ; mov ecx, dword [eax+0x3C] ; mov dword [esp+0x10], eax ; mov eax, dword [ecx+0x0C] ; jmp eax
+struct.pack('<L', 0x6a86f)  # int3  ; mov ecx, dword [esp+0x04] ; mov eax, dword [0x100E0110] ; mov dword [0x100E0110], ecx ; ret
+struct.pack('<L', 0x835df)  # int3  ; mov ecx, dword [esp+0x04] ; mov edx, dword [esp+0x08] ; mov eax, dword [ecx+0x08] ; mov dword [ecx+0x08], edx ; ret
+struct.pack('<L', 0x2b8bf)  # int3  ; mov ecx, dword [esp+0x04] ; mov edx, dword [esp+0x08] ; mov eax, dword [ecx] ; mov dword [ecx], edx ; ret
+struct.pack('<L', 0x4b26f)  # int3  ; mov ecx, dword [esp+0x08] ; mov eax, dword [esp+0x04] ; not ecx ; and dword [eax+0x08], ecx ; ret
+struct.pack('<L', 0x3914f)  # int3  ; mov ecx, dword [esp+0x08] ; mov eax, dword [esp+0x04] ; not ecx ; and dword [eax+0x14], ecx ; ret
+struct.pack('<L', 0x8cef)  # int3  ; mov edx, dword [ecx] ; mov eax, dword [ecx+0x04] ; bswap edx ; bswap eax ; ret
+struct.pack('<L', 0x57d8f)  # int3  ; push esi ; mov esi, dword [esp+0x0C] ; mov eax, dword [esi+0x10] ; call eax
+struct.pack('<L', 0x4359d)  # lea ecx, dword [ecx+0x00] ; mov edx, dword [0x100E3B14] ; mov eax, dword [edx+0x0C] ; push esi ; call eax
+struct.pack('<L', 0x75aee)  # lea ecx, dword [esp+0x04] ; mov dword [esp+0x0C], eax ; mov eax, dword [edx+0x10] ; push ecx ; call eax
+struct.pack('<L', 0x75d75)  # lea ecx, dword [esp+0x0C] ; mov dword [esp+0x14], eax ; mov eax, dword [edx+0x18] ; push esi ; push ecx ; call eax
+struct.pack('<L', 0x42cd2)  # lea ecx, dword [esp] ; mov dword [esp], eax ; mov eax, dword [edx+0x08] ; push ecx ; call eax
+struct.pack('<L', 0x44bdd)  # lea edx, dword [eax+eax*2] ; mov eax, dword [0x100D80D0+edx*8] ; add esp, 0x20 ; ret
+struct.pack('<L', 0x44c7d)  # lea edx, dword [eax+eax*2] ; mov eax, dword [0x100D80D4+edx*8] ; add esp, 0x20 ; ret
+struct.pack('<L', 0x2f490)  # lea edx, dword [ebx+0x04] ; push edx ; push eax ; mov eax, dword [ecx+0x00000090] ; push esi ; call eax
+struct.pack('<L', 0x2f4b4)  # lea edx, dword [ebx+0x18] ; push edx ; push eax ; mov eax, dword [ecx+0x00000090] ; push esi ; call eax
+struct.pack('<L', 0x63be3)  # lea edx, dword [esp+0x0C] ; mov dword [esp+0x0C], eax ; mov eax, dword [esp+0x24] ; push edx ; push eax ; call dword [esp+0x20]
+struct.pack('<L', 0x43b81)  # leave  ; inc ecx ; mov eax, dword [eax+ecx*4+0x44] ; ret
+struct.pack('<L', 0x81e85)  # les eax,  [eax-0x3D] ; mov eax, dword [eax+0x04] ; add esp, 0x40 ; ret
+struct.pack('<L', 0x2b7cd)  # les eax,  [eax-0x3D] ; mov eax, dword [esp+0x04] ; or dword [eax+0x28], 0x01 ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x6feea)  # les ebx,  [eax] ; mov eax, dword [esp+0x14] ; pop edi ; pop esi ; ret
+struct.pack('<L', 0x58351)  # les ecx,  [eax] ; push ecx ; mov dword [esp+0x30], eax ; mov eax, dword [edx+0x10] ; push 0xFFFFFFFF ; call eax
+struct.pack('<L', 0x72e10)  # les ecx,  [ecx+eax] ; pop es ; mov eax, dword [esi] ; pop esi ; pop edi ; ret
+struct.pack('<L', 0x5f4f5)  # les edx,  [0x33057FC0+eax*4] ; rcr byte [esi+0x59], 0xFFFFFFC3 ; mov eax, dword [esi] ; pop esi ; pop ecx ; ret
+struct.pack('<L', 0x66133)  # les edx,  [0x561375C0+eax*4] ; push eax ; mov eax, dword [esi+0x20] ; mov dword [esi+0x5C], 0x00000003 ; call eax
+struct.pack('<L', 0x3b96)  # les edx,  [eax] ; mov eax, dword [0x100E1C94] ; mov ecx, dword [eax+0x04] ; jmp ecx
+struct.pack('<L', 0x3bf6)  # les edx,  [eax] ; mov eax, dword [0x100E1C94] ; mov ecx, dword [eax+0x08] ; jmp ecx
+struct.pack('<L', 0x3c56)  # les edx,  [eax] ; mov eax, dword [0x100E1C94] ; mov ecx, dword [eax+0x0C] ; jmp ecx
+struct.pack('<L', 0x3cb6)  # les edx,  [eax] ; mov eax, dword [0x100E1C94] ; mov ecx, dword [eax+0x10] ; jmp ecx
+struct.pack('<L', 0x3d16)  # les edx,  [eax] ; mov eax, dword [0x100E1C94] ; mov ecx, dword [eax+0x14] ; jmp ecx
+struct.pack('<L', 0x3b36)  # les edx,  [eax] ; mov eax, dword [0x100E1C94] ; mov ecx, dword [eax] ; jmp ecx
+struct.pack('<L', 0x42b36)  # les edx,  [eax] ; mov eax, dword [0x100E3B14] ; mov ecx, dword [eax+0x04] ; jmp ecx
+struct.pack('<L', 0x427c0)  # les edx,  [eax] ; mov eax, dword [0x100E3B14] ; mov ecx, dword [eax+0x14] ; push 0x00000000 ; call ecx
+struct.pack('<L', 0x42880)  # les edx,  [eax] ; mov eax, dword [0x100E3B14] ; mov ecx, dword [eax+0x14] ; push 0x00000001 ; call ecx
+struct.pack('<L', 0x43066)  # les edx,  [eax] ; mov eax, dword [0x100E3B14] ; mov ecx, dword [eax+0x28] ; jmp ecx
+struct.pack('<L', 0x42b96)  # les edx,  [eax] ; mov eax, dword [0x100E3B14] ; mov ecx, dword [eax] ; push 0x00000000 ; call ecx
+struct.pack('<L', 0x42596)  # les edx,  [eax] ; mov eax, dword [0x100E3B14] ; mov ecx, dword [eax] ; push esi ; push 0x00000000 ; call ecx
+struct.pack('<L', 0x42636)  # les edx,  [eax] ; mov eax, dword [0x100E3B14] ; mov ecx, dword [eax] ; push esi ; push 0x00000001 ; call ecx
+struct.pack('<L', 0x74647)  # les esp,  [eax] ; mov eax, dword [edi+0x40] ; pop edi ; ret
+struct.pack('<L', 0x5e83b)  # les esp,  [ebx+eax*8] ; int3  ; int3  ; mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x04] ; ret
+struct.pack('<L', 0x75659)  # mov bl, 0x0B ; add byte [eax], al ; push eax ; mov eax, dword [eax+0x04] ; call eax
+struct.pack('<L', 0x435fa)  # mov byte [0x1C74100E], dh ; mov eax, dword [0x100E3B14] ; or dword [esi], 0x02000000 ; mov ecx, dword [eax+0x0C] ; push esi ; call ecx
+struct.pack('<L', 0x44bb)  # mov byte [edx+0x00000243], 0x00000000 ; mov eax, dword [esi] ; pop esi ; add eax, 0x00000144 ; pop ebx ; ret
+struct.pack('<L', 0x81dd0)  # mov cs, word [ebx] ; adc bl, al ; mov eax, dword [eax+0x04] ; ret
+struct.pack('<L', 0x759f7)  # mov dword [0x100E3C0C], eax ; mov eax, dword [eax+0x08] ; lea edx, dword [esp+0x04] ; push edx ; call eax
+struct.pack('<L', 0x7561e)  # mov dword [0x100E3C0C], eax ; mov eax, dword [eax+0x08] ; push esi ; mov esi, dword [esp+0x08] ; push esi ; call eax
+struct.pack('<L', 0x88bc5)  # mov dword [0x100E3CD4], 0x00000001 ; mov eax, dword [0x100E19E0] ; mov dword [ebp-0x00000328], eax ; mov eax, dword [0x100E19E4] ; mov dword [ebp-0x00000324], eax ; call dword [0x10093080]
+struct.pack('<L', 0x1d2f6)  # mov dword [eax+0x04], edx ; mov ecx, dword [ecx] ; mov dword [eax], ecx ; mov eax, dword [esp+0x0C] ; pop esi ; ret
+struct.pack('<L', 0x1d2fb)  # mov dword [eax], ecx ; mov eax, dword [esp+0x0C] ; pop esi ; ret
+struct.pack('<L', 0x2bc9e)  # mov dword [eax], edx ; mov eax, dword [esp+0x08] ; mov dword [ecx+0x18], eax ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x4f613)  # mov dword [eax], edx ; mov ecx, dword [esp+0x04] ; mov eax, dword [esp+0x0C] ; mov dword [ecx+0x04], eax ; ret
+struct.pack('<L', 0x88bd4)  # mov dword [ebp-0x00000328], eax ; mov eax, dword [0x100E19E4] ; mov dword [ebp-0x00000324], eax ; call dword [0x10093080]
+struct.pack('<L', 0x448c7)  # mov dword [ecx+0x08], 0x00000000 ; mov eax, dword [eax+0x04] ; or dword [eax+0x14], 0x0D ; ret
+struct.pack('<L', 0x65e33)  # mov dword [ecx+0x5C], eax ; mov eax, dword [ecx+0x20] ; push 0x00000000 ; mov dword [ecx+0x60], esi ; mov dword [ecx+0x64], edi ; call eax
+struct.pack('<L', 0x53f6c)  # mov dword [ecx], eax ; mov ecx, dword [edx+0x58] ; mov edx, dword [ecx+0x08] ; mov eax, dword [edx+0x08] ; ret
+struct.pack('<L', 0x53f9c)  # mov dword [ecx], eax ; mov ecx, dword [edx+0x58] ; mov edx, dword [ecx+0x0C] ; mov eax, dword [edx+0x08] ; ret
+struct.pack('<L', 0x52380)  # mov dword [edx], eax ; mov eax, dword [esp+0x04] ; add esp, 0x14 ; ret
+struct.pack('<L', 0x19d58)  # mov dword [esi+0x08], ecx ; mov dword [esi+0x0C], edx ; mov eax, dword [ebp+0x00000114] ; call eax
+struct.pack('<L', 0x19e9f)  # mov dword [esi+0x08], ecx ; mov dword [esi+0x0C], edx ; mov eax, dword [ebp+0x00000114] ; push esi ; push ebp ; call eax
+struct.pack('<L', 0x19fdd)  # mov dword [esi+0x08], ecx ; mov dword [esi+0x0C], edx ; mov eax, dword [ebp+0x00000118] ; push esi ; push ebp ; call eax
+struct.pack('<L', 0x19d5b)  # mov dword [esi+0x0C], edx ; mov eax, dword [ebp+0x00000114] ; call eax
+struct.pack('<L', 0x19ea2)  # mov dword [esi+0x0C], edx ; mov eax, dword [ebp+0x00000114] ; push esi ; push ebp ; call eax
+struct.pack('<L', 0x19fe0)  # mov dword [esi+0x0C], edx ; mov eax, dword [ebp+0x00000118] ; push esi ; push ebp ; call eax
+struct.pack('<L', 0x2b047)  # mov dword [esp+0x04], eax ; mov eax, dword [ecx+0x08] ; jmp eax
+struct.pack('<L', 0x460b6)  # mov dword [esp+0x04], eax ; mov eax, dword [ecx+0x14] ; jmp eax
+struct.pack('<L', 0x4b216)  # mov dword [esp+0x04], eax ; mov eax, dword [ecx+0x18] ; jmp eax
+struct.pack('<L', 0x756f5)  # mov dword [esp+0x04], eax ; mov eax, dword [ecx+0x24] ; jmp eax
+struct.pack('<L', 0x6c447)  # mov dword [esp+0x04], ecx ; mov eax, dword [eax] ; jmp eax
+struct.pack('<L', 0x6ad03)  # mov dword [esp+0x08], eax ; mov eax, dword [eax+0x08] ; pop esi ; mov dword [esp+0x08], edx ; jmp eax
+struct.pack('<L', 0x75af2)  # mov dword [esp+0x0C], eax ; mov eax, dword [edx+0x10] ; push ecx ; call eax
+struct.pack('<L', 0x63be7)  # mov dword [esp+0x0C], eax ; mov eax, dword [esp+0x24] ; push edx ; push eax ; call dword [esp+0x20]
+struct.pack('<L', 0x2af67)  # mov dword [esp+0x10], eax ; mov eax, dword [ecx+0x0C] ; jmp eax
+struct.pack('<L', 0x6c210)  # mov dword [esp+0x10], eax ; mov eax, dword [esi+0x18] ; push ebx ; call eax
+struct.pack('<L', 0x75d79)  # mov dword [esp+0x14], eax ; mov eax, dword [edx+0x18] ; push esi ; push ecx ; call eax
+struct.pack('<L', 0x58977)  # mov dword [esp+0x1C], edx ; mov eax, dword [esi] ; mov ecx, dword [ecx+0x0C] ; push edi ; push eax ; call ecx
+struct.pack('<L', 0x41d61)  # mov dword [esp+0x20], eax ; mov eax, dword [esp+0x28] ; push 0x100A84DC ; push eax ; call esi
+struct.pack('<L', 0x58354)  # mov dword [esp+0x30], eax ; mov eax, dword [edx+0x10] ; push 0xFFFFFFFF ; call eax
+struct.pack('<L', 0x41ae0)  # mov dword [esp+0x38], eax ; mov eax, dword [esp+0x44] ; push 0x00000010 ; push eax ; push edi ; call dword [0x10093018]
+struct.pack('<L', 0x42cd5)  # mov dword [esp], eax ; mov eax, dword [edx+0x08] ; push ecx ; call eax
+struct.pack('<L', 0x17d3)  # mov eax, dword [0x10093470+eax*4] ; ret
+struct.pack('<L', 0x58e49)  # mov eax, dword [0x100B0790+eax*4] ; ret
+struct.pack('<L', 0x3336a)  # mov eax, dword [0x100D6550] ; pop esi ; ret
+struct.pack('<L', 0x44be0)  # mov eax, dword [0x100D80D0+edx*8] ; add esp, 0x20 ; ret
+struct.pack('<L', 0x44c80)  # mov eax, dword [0x100D80D4+edx*8] ; add esp, 0x20 ; ret
+struct.pack('<L', 0x5db2c)  # mov eax, dword [0x100DF4A8+eax*4] ; ret
+struct.pack('<L', 0x5f150)  # mov eax, dword [0x100DFBD0] ; ret
+struct.pack('<L', 0x65930)  # mov eax, dword [0x100DFED8] ; ret
+struct.pack('<L', 0x6a874)  # mov eax, dword [0x100E0110] ; mov dword [0x100E0110], ecx ; ret
+struct.pack('<L', 0x88bcf)  # mov eax, dword [0x100E19E0] ; mov dword [ebp-0x00000328], eax ; mov eax, dword [0x100E19E4] ; mov dword [ebp-0x00000324], eax ; call dword [0x10093080]
+struct.pack('<L', 0x195a)  # mov eax, dword [0x100E19E0] ; xor eax, esp ; mov dword [esp+0x00000104], eax ; push 0xFFFFFFF4 ; call dword [0x100930B0]
+struct.pack('<L', 0x88bda)  # mov eax, dword [0x100E19E4] ; mov dword [ebp-0x00000324], eax ; call dword [0x10093080]
+struct.pack('<L', 0x1740)  # mov eax, dword [0x100E1A90] ; ret
+struct.pack('<L', 0x1750)  # mov eax, dword [0x100E1A94] ; ret
+struct.pack('<L', 0x1780)  # mov eax, dword [0x100E1A98] ; ret
+struct.pack('<L', 0x16e0)  # mov eax, dword [0x100E1A9C] ; ret
+struct.pack('<L', 0x16f0)  # mov eax, dword [0x100E1AA0] ; ret
+struct.pack('<L', 0x25d0)  # mov eax, dword [0x100E1AD8] ; ret
+struct.pack('<L', 0x3745)  # mov eax, dword [0x100E1C94] ; add esp, 0x10 ; ret
+struct.pack('<L', 0x3b98)  # mov eax, dword [0x100E1C94] ; mov ecx, dword [eax+0x04] ; jmp ecx
+struct.pack('<L', 0x3bf8)  # mov eax, dword [0x100E1C94] ; mov ecx, dword [eax+0x08] ; jmp ecx
+struct.pack('<L', 0x3c58)  # mov eax, dword [0x100E1C94] ; mov ecx, dword [eax+0x0C] ; jmp ecx
+struct.pack('<L', 0x3cb8)  # mov eax, dword [0x100E1C94] ; mov ecx, dword [eax+0x10] ; jmp ecx
+struct.pack('<L', 0x3d18)  # mov eax, dword [0x100E1C94] ; mov ecx, dword [eax+0x14] ; jmp ecx
+struct.pack('<L', 0x3b38)  # mov eax, dword [0x100E1C94] ; mov ecx, dword [eax] ; jmp ecx
+struct.pack('<L', 0x1cff8)  # mov eax, dword [0x100E1E60] ; ret
+struct.pack('<L', 0x1d00e)  # mov eax, dword [0x100E1E64] ; ret
+struct.pack('<L', 0x1d003)  # mov eax, dword [0x100E1E68] ; ret
+struct.pack('<L', 0x2b8b0)  # mov eax, dword [0x100E1E7C] ; ret
+struct.pack('<L', 0x424a5)  # mov eax, dword [0x100E3B14] ; add esp, 0x10 ; ret
+struct.pack('<L', 0x42d5c)  # mov eax, dword [0x100E3B14] ; lea edx, dword [esp] ; mov dword [esp], ecx ; mov ecx, dword [eax+0x08] ; push edx ; call ecx
+struct.pack('<L', 0x42b38)  # mov eax, dword [0x100E3B14] ; mov ecx, dword [eax+0x04] ; jmp ecx
+struct.pack('<L', 0x43577)  # mov eax, dword [0x100E3B14] ; mov ecx, dword [eax+0x0C] ; push esi ; call ecx
+struct.pack('<L', 0x427c2)  # mov eax, dword [0x100E3B14] ; mov ecx, dword [eax+0x14] ; push 0x00000000 ; call ecx
+struct.pack('<L', 0x42882)  # mov eax, dword [0x100E3B14] ; mov ecx, dword [eax+0x14] ; push 0x00000001 ; call ecx
+struct.pack('<L', 0x434ef)  # mov eax, dword [0x100E3B14] ; mov ecx, dword [eax+0x18] ; lea edx, dword [esp+0x14] ; push edx ; call ecx
+struct.pack('<L', 0x42fc0)  # mov eax, dword [0x100E3B14] ; mov ecx, dword [eax+0x20] ; push esi ; call ecx
+struct.pack('<L', 0x43068)  # mov eax, dword [0x100E3B14] ; mov ecx, dword [eax+0x28] ; jmp ecx
+struct.pack('<L', 0x42b98)  # mov eax, dword [0x100E3B14] ; mov ecx, dword [eax] ; push 0x00000000 ; call ecx
+struct.pack('<L', 0x42598)  # mov eax, dword [0x100E3B14] ; mov ecx, dword [eax] ; push esi ; push 0x00000000 ; call ecx
+struct.pack('<L', 0x42638)  # mov eax, dword [0x100E3B14] ; mov ecx, dword [eax] ; push esi ; push 0x00000001 ; call ecx
+struct.pack('<L', 0x842b3)  # mov eax, dword [0x100E3C38] ; push 0x100B95E0 ; push eax ; call ebx
+struct.pack('<L', 0x84339)  # mov eax, dword [0x100E3C38] ; push eax ; call ebp
+struct.pack('<L', 0x84148)  # mov eax, dword [0x100E3C3C] ; push eax ; call dword [0x10093134]
+struct.pack('<L', 0x83fd7)  # mov eax, dword [0x100E3C50] ; push eax ; push 0x00000002 ; call esi
+struct.pack('<L', 0x83fb0)  # mov eax, dword [0x100E3CA0] ; push esi ; mov esi, dword [0x10093184] ; push eax ; push 0x00000016 ; call esi
+struct.pack('<L', 0x8bbe5)  # mov eax, dword [0x2B6ED9EB] ; aad 0xC1 ; ret
+struct.pack('<L', 0x8bb45)  # mov eax, dword [0x2B6ED9EB] ; lds eax, ecx ; ret
+struct.pack('<L', 0x8bc05)  # mov eax, dword [0x2B6ED9EB] ; ret
+struct.pack('<L', 0x4b365)  # mov eax, dword [0x77000000] ; push ebx ; movzx ecx, byte [eax+0x1004B3F0] ; jmp dword [0x1004B3E0+ecx*4]
+struct.pack('<L', 0x5254b)  # mov eax, dword [0x8300005C] ; les ecx,  [eax] ; ret
+struct.pack('<L', 0x7d04b)  # mov eax, dword [0x83FFFDB1] ; les ecx,  [eax] ; ret
+struct.pack('<L', 0x7284b)  # mov eax, dword [0x83FFFE59] ; les ecx,  [eax] ; ret
+struct.pack('<L', 0x4c76)  # mov eax, dword [0xC16ED9EB] ; ret
+struct.pack('<L', 0x4c9a)  # mov eax, dword [0xC16ED9EB] ; retn 0x8B03
+struct.pack('<L', 0x75e45)  # mov eax, dword [0xC483FFFC] ; or byte [ebp+0x5F0375C0], al ; pop esi ; ret
+struct.pack('<L', 0x49483)  # mov eax, dword [0xC483FFFF] ; adc al, 0x5F ; pop esi ; xor eax, eax ; pop ebx ; ret
+struct.pack('<L', 0x3f3b0)  # mov eax, dword [0xC483FFFF] ; adc bh, dh ; fcomp dword [ebx] ; sal bh, 0xFFFFFFD8 ; ret
+struct.pack('<L', 0x54591)  # mov eax, dword [0xC483FFFF] ; add al, 0x89 ; push es ; pop esi ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x23158)  # mov eax, dword [0xC483FFFF] ; or byte [ebp+0x5F0575C0], al ; xor eax, eax ; pop esi ; ret
+struct.pack('<L', 0x3eff8)  # mov eax, dword [0xC483FFFF] ; or byte [edi+0x5E], bl ; pop ebp ; or eax, 0xFFFFFFFF ; pop ebx ; ret
+struct.pack('<L', 0x2f789)  # mov eax, dword [eax+0x00000084] ; push ebx ; push ebp ; push edi ; call eax
+struct.pack('<L', 0x44ef)  # mov eax, dword [eax+0x00000140] ; push eax ; call dword [0x10093064]
+struct.pack('<L', 0x79d08)  # mov eax, dword [eax+0x04] ; add esp, 0x08 ; pop esi ; ret
+struct.pack('<L', 0x42ce9)  # mov eax, dword [eax+0x04] ; add esp, 0x08 ; ret
+struct.pack('<L', 0x44b8a)  # mov eax, dword [eax+0x04] ; add esp, 0x20 ; ret
+struct.pack('<L', 0x81e88)  # mov eax, dword [eax+0x04] ; add esp, 0x40 ; ret
+struct.pack('<L', 0x7565e)  # mov eax, dword [eax+0x04] ; call eax
+struct.pack('<L', 0x448e4)  # mov eax, dword [eax+0x04] ; inc dword [eax+0x08] ; ret
+struct.pack('<L', 0x44281)  # mov eax, dword [eax+0x04] ; mov dword [esp+0x08], edx ; mov dword [esp+0x04], ecx ; jmp eax
+struct.pack('<L', 0x454bc)  # mov eax, dword [eax+0x04] ; mov eax, dword [eax+0x08] ; add esp, 0x20 ; ret
+struct.pack('<L', 0x448ce)  # mov eax, dword [eax+0x04] ; or dword [eax+0x14], 0x0D ; ret
+struct.pack('<L', 0x42e22)  # mov eax, dword [eax+0x04] ; pop esi ; add esp, 0x08 ; ret
+struct.pack('<L', 0x2d9ee)  # mov eax, dword [eax+0x04] ; pop esi ; ret
+struct.pack('<L', 0x4412b)  # mov eax, dword [eax+0x04] ; push ecx ; push edx ; call eax
+struct.pack('<L', 0x5e844)  # mov eax, dword [eax+0x04] ; ret
+struct.pack('<L', 0x75e19)  # mov eax, dword [eax+0x08] ; add esp, 0x0C ; ret
+struct.pack('<L', 0x454bf)  # mov eax, dword [eax+0x08] ; add esp, 0x20 ; ret
+struct.pack('<L', 0x4b284)  # mov eax, dword [eax+0x08] ; and eax, dword [esp+0x08] ; ret
+struct.pack('<L', 0x759fc)  # mov eax, dword [eax+0x08] ; lea edx, dword [esp+0x04] ; push edx ; call eax
+struct.pack('<L', 0x27cd9)  # mov eax, dword [eax+0x08] ; mov eax, dword [eax+0x24] ; ret
+struct.pack('<L', 0x5a801)  # mov eax, dword [eax+0x08] ; mov ecx, dword [esp+0x04] ; add eax, dword [ecx] ; ret
+struct.pack('<L', 0x6ad07)  # mov eax, dword [eax+0x08] ; pop esi ; mov dword [esp+0x08], edx ; jmp eax
+struct.pack('<L', 0x75f4c)  # mov eax, dword [eax+0x08] ; pop esi ; pop ebx ; pop edi ; add esp, 0x0C ; ret
+struct.pack('<L', 0x5c049)  # mov eax, dword [eax+0x08] ; push 0x0000000B ; push eax ; push 0x100B0E20 ; call dword [0x10093168]
+struct.pack('<L', 0x21850)  # mov eax, dword [eax+0x08] ; push ecx ; push edx ; call eax
+struct.pack('<L', 0x75623)  # mov eax, dword [eax+0x08] ; push esi ; mov esi, dword [esp+0x08] ; push esi ; call eax
+struct.pack('<L', 0x4014e)  # mov eax, dword [eax+0x08] ; ret
+struct.pack('<L', 0x818c9)  # mov eax, dword [eax+0x0C] ; mov dword [ecx], eax ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x83da0)  # mov eax, dword [eax+0x0C] ; pop edi ; pop esi ; ret
+struct.pack('<L', 0x44579)  # mov eax, dword [eax+0x0C] ; pop esi ; pop edi ; pop ebx ; add esp, 0x10 ; ret
+struct.pack('<L', 0x38c01)  # mov eax, dword [eax+0x0C] ; push edi ; push esi ; push ecx ; push edx ; call eax
+struct.pack('<L', 0x35924)  # mov eax, dword [eax+0x0C] ; ret
+struct.pack('<L', 0x78d82)  # mov eax, dword [eax+0x10] ; pop esi ; ret
+struct.pack('<L', 0x4b224)  # mov eax, dword [eax+0x10] ; ret
+struct.pack('<L', 0x39164)  # mov eax, dword [eax+0x14] ; and eax, dword [esp+0x08] ; ret
+struct.pack('<L', 0x6d04e)  # mov eax, dword [eax+0x14] ; push ecx ; lea edx, dword [esp+0x08] ; push edx ; push 0x00000000 ; call eax
+struct.pack('<L', 0x71e24)  # mov eax, dword [eax+0x14] ; ret
+struct.pack('<L', 0x46470)  # mov eax, dword [eax+0x18] ; push edi ; push ecx ; push edx ; push esi ; call eax
+struct.pack('<L', 0x87dc4)  # mov eax, dword [eax+0x18] ; ret
+struct.pack('<L', 0x87dd4)  # mov eax, dword [eax+0x1C] ; ret
+struct.pack('<L', 0x3ab38)  # mov eax, dword [eax+0x20] ; mov ecx, dword [esp+0x14] ; push eax ; push ecx ; push esi ; call dword [0x100D5014]
+struct.pack('<L', 0x2bcd3)  # mov eax, dword [eax+0x20] ; ret
+struct.pack('<L', 0x27cdc)  # mov eax, dword [eax+0x24] ; ret
+struct.pack('<L', 0x87e04)  # mov eax, dword [eax+0x28] ; ret
+struct.pack('<L', 0x87e14)  # mov eax, dword [eax+0x2C] ; ret
+struct.pack('<L', 0x2d6e4)  # mov eax, dword [eax+0x30] ; ret
+struct.pack('<L', 0x2d704)  # mov eax, dword [eax+0x34] ; ret
+struct.pack('<L', 0x2d724)  # mov eax, dword [eax+0x38] ; ret
+struct.pack('<L', 0x87e24)  # mov eax, dword [eax+0x3C] ; ret
+struct.pack('<L', 0x2d7a4)  # mov eax, dword [eax+0x40] ; ret
+struct.pack('<L', 0x665b4)  # mov eax, dword [eax+0x4C] ; ret
+struct.pack('<L', 0x66844)  # mov eax, dword [eax+0x50] ; ret
+struct.pack('<L', 0x3129b)  # mov eax, dword [eax+0x52000000] ; push eax ; push esi ; call ecx
+struct.pack('<L', 0x66854)  # mov eax, dword [eax+0x54] ; ret
+struct.pack('<L', 0x66594)  # mov eax, dword [eax+0x58] ; ret
+struct.pack('<L', 0x66574)  # mov eax, dword [eax+0x5C] ; ret
+struct.pack('<L', 0x665a4)  # mov eax, dword [eax+0x60] ; ret
+struct.pack('<L', 0x2fa2d)  # mov eax, dword [eax+eax+0x57510000] ; push ebx ; call eax
+struct.pack('<L', 0x3f8e4)  # mov eax, dword [eax+eax] ; mov dword [esi+0x0C], 0x00000000 ; mov dword [esi+0x14], 0x00000000 ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x43c8e)  # mov eax, dword [eax+ecx*4+0x000000C4] ; mov dword [edx], eax ; pop esi ; mov eax, ebx ; pop ebx ; ret
+struct.pack('<L', 0x43b84)  # mov eax, dword [eax+ecx*4+0x44] ; ret
+struct.pack('<L', 0x579c1)  # mov eax, dword [eax] ; add byte [eax], al ; movzx edx, byte [edx+0x10057A7C] ; jmp dword [0x10057A68+edx*4]
+struct.pack('<L', 0x6cf72)  # mov eax, dword [eax] ; add esp, 0x3C ; ret
+struct.pack('<L', 0x42e74)  # mov eax, dword [eax] ; imul eax, eax, 0x0D ; ret
+struct.pack('<L', 0x408d9)  # mov eax, dword [eax] ; inc dword [esi+0x50] ; pop esi ; ret
+struct.pack('<L', 0x6c44b)  # mov eax, dword [eax] ; jmp eax
+struct.pack('<L', 0x53f6a)  # mov eax, dword [eax] ; mov dword [ecx], eax ; mov ecx, dword [edx+0x58] ; mov edx, dword [ecx+0x08] ; mov eax, dword [edx+0x08] ; ret
+struct.pack('<L', 0x53f9a)  # mov eax, dword [eax] ; mov dword [ecx], eax ; mov ecx, dword [edx+0x58] ; mov edx, dword [ecx+0x0C] ; mov eax, dword [edx+0x08] ; ret
+struct.pack('<L', 0x884dc)  # mov eax, dword [eax] ; mov dword [esp], eax ; ret
+struct.pack('<L', 0x755c9)  # mov eax, dword [eax] ; mov eax, dword [eax+0x04] ; ret
+struct.pack('<L', 0x755d9)  # mov eax, dword [eax] ; mov eax, dword [eax+0x08] ; ret
+struct.pack('<L', 0x65179)  # mov eax, dword [eax] ; mov ecx, dword [eax+0x18] ; mov eax, dword [ecx+0x04] ; ret
+struct.pack('<L', 0x37a4)  # mov eax, dword [eax] ; mov ecx, dword [esp+0x08] ; sub eax, dword [ecx] ; ret
+struct.pack('<L', 0x403f8)  # mov eax, dword [eax] ; push eax ; call dword [esp+0x18]
+struct.pack('<L', 0x2c2b0)  # mov eax, dword [eax] ; push edi ; push eax ; call dword [0x1009308C]
+struct.pack('<L', 0x5ce26)  # mov eax, dword [eax] ; push edi ; push ebp ; push eax ; call ebx
+struct.pack('<L', 0x1d4b4)  # mov eax, dword [eax] ; ret
+struct.pack('<L', 0x19d5e)  # mov eax, dword [ebp+0x00000114] ; call eax
+struct.pack('<L', 0x1a785)  # mov eax, dword [ebp+0x00000114] ; push edx ; push ebp ; mov dword [esp+0x40], ebx ; mov dword [esp+0x4C], ecx ; call eax
+struct.pack('<L', 0x19ea5)  # mov eax, dword [ebp+0x00000114] ; push esi ; push ebp ; call eax
+struct.pack('<L', 0x19fe3)  # mov eax, dword [ebp+0x00000118] ; push esi ; push ebp ; call eax
+struct.pack('<L', 0x1dc39)  # mov eax, dword [ebp+0x00] ; mov dword [ebp+0x04], eax ; mov dword [ebp+0x0C], 0x00000000 ; pop ebp ; pop ebx ; ret
+struct.pack('<L', 0x5a4cf)  # mov eax, dword [ebp+0x04] ; push edx ; push ecx ; mov ecx, dword [ebp+0x10] ; push eax ; call ecx
+struct.pack('<L', 0x73d3c)  # mov eax, dword [ebp+0x08] ; push 0x00000005 ; push 0x100B64A4 ; push eax ; call ebx
+struct.pack('<L', 0x5a4fd)  # mov eax, dword [ebp+0x10] ; push ecx ; push edx ; push 0x00000000 ; push 0xFFFFFFFF ; call eax
+struct.pack('<L', 0x59d04)  # mov eax, dword [ebp+0x10] ; push edi ; push ecx ; push edx ; push ebx ; call eax
+struct.pack('<L', 0x88fa6)  # mov eax, dword [ebp-0x04] ; mov dword [ebp-0x04], 0xFFFFFFFE ; mov dword [ebp-0x08], eax ; lea eax, dword [ebp-0x10] ; mov dword [fs:0x00000000], eax ; ret
+struct.pack('<L', 0x836c2)  # mov eax, dword [ebx+0x08] ; push esi ; call eax
+struct.pack('<L', 0x3f6ca)  # mov eax, dword [ebx+0x10] ; pop edi ; pop esi ; pop ebx ; ret
+struct.pack('<L', 0x3f11a)  # mov eax, dword [ebx+0x20] ; add dword [eax+0x08], esi ; mov eax, esi ; pop esi ; pop ebx ; ret
+struct.pack('<L', 0x2f7c1)  # mov eax, dword [ecx+0x00000080] ; push edi ; call eax
+struct.pack('<L', 0x2f821)  # mov eax, dword [ecx+0x00000080] ; push edx ; push edi ; call eax
+struct.pack('<L', 0x313af)  # mov eax, dword [ecx+0x00000080] ; push edx ; push edi ; push esi ; call eax
+struct.pack('<L', 0x31389)  # mov eax, dword [ecx+0x00000080] ; push edx ; push esi ; call eax
+struct.pack('<L', 0x314a1)  # mov eax, dword [ecx+0x00000080] ; push esi ; call eax
+struct.pack('<L', 0x36862)  # mov eax, dword [ecx+0x00000088] ; push edx ; push ebx ; push edi ; call eax
+struct.pack('<L', 0x31339)  # mov eax, dword [ecx+0x0000008C] ; push esi ; call eax
+struct.pack('<L', 0x2f495)  # mov eax, dword [ecx+0x00000090] ; push esi ; call eax
+struct.pack('<L', 0x44cbd)  # mov eax, dword [ecx+0x04] ; add esp, 0x20 ; ret
+struct.pack('<L', 0x8cf2)  # mov eax, dword [ecx+0x04] ; bswap edx ; bswap eax ; ret
+struct.pack('<L', 0x4b206)  # mov eax, dword [ecx+0x04] ; ret
+struct.pack('<L', 0x2b04b)  # mov eax, dword [ecx+0x08] ; jmp eax
+struct.pack('<L', 0x835e8)  # mov eax, dword [ecx+0x08] ; mov dword [ecx+0x08], edx ; ret
+struct.pack('<L', 0x5ce55)  # mov eax, dword [ecx+0x08] ; pop edi ; pop esi ; pop ebp ; pop ebx ; ret
+struct.pack('<L', 0x2af6b)  # mov eax, dword [ecx+0x0C] ; jmp eax
+struct.pack('<L', 0x2afc1)  # mov eax, dword [ecx+0x0C] ; push edx ; call eax
+struct.pack('<L', 0x2bc6a)  # mov eax, dword [ecx+0x0C] ; ret
+struct.pack('<L', 0x57d16)  # mov eax, dword [ecx+0x10] ; call eax
+struct.pack('<L', 0x78d69)  # mov eax, dword [ecx+0x10] ; pop esi ; ret
+struct.pack('<L', 0x4b236)  # mov eax, dword [ecx+0x10] ; ret
+struct.pack('<L', 0x75bbc)  # mov eax, dword [ecx+0x14] ; call eax
+struct.pack('<L', 0x460ba)  # mov eax, dword [ecx+0x14] ; jmp eax
+struct.pack('<L', 0x269c2)  # mov eax, dword [ecx+0x14] ; push ebp ; push esi ; push ebx ; push edx ; call eax
+struct.pack('<L', 0x26d2e)  # mov eax, dword [ecx+0x14] ; push ebp ; push esi ; push edi ; push edx ; call eax
+struct.pack('<L', 0x5895a)  # mov eax, dword [ecx+0x14] ; push ebx ; push edx ; push esi ; call eax
+struct.pack('<L', 0x64c36)  # mov eax, dword [ecx+0x14] ; ret
+struct.pack('<L', 0x4b21a)  # mov eax, dword [ecx+0x18] ; jmp eax
+struct.pack('<L', 0x39526)  # mov eax, dword [ecx+0x18] ; push ebx ; push ebp ; push edx ; push esi ; call eax
+struct.pack('<L', 0x274d1)  # mov eax, dword [ecx+0x18] ; push edx ; mov edx, dword [esp+0x70] ; push edx ; push ebx ; call eax
+struct.pack('<L', 0x460eb)  # mov eax, dword [ecx+0x18] ; push edx ; push esi ; call eax
+struct.pack('<L', 0x83a62)  # mov eax, dword [ecx+0x18] ; ret
+struct.pack('<L', 0x7588d)  # mov eax, dword [ecx+0x1C] ; inc edi ; push edx ; push esi ; call eax
+struct.pack('<L', 0x65e36)  # mov eax, dword [ecx+0x20] ; push 0x00000000 ; mov dword [ecx+0x60], esi ; mov dword [ecx+0x64], edi ; call eax
+struct.pack('<L', 0x3a751)  # mov eax, dword [ecx+0x20] ; push eax ; push 0x00000001 ; push esi ; push edx ; call dword [0x100D501C]
+struct.pack('<L', 0x756f9)  # mov eax, dword [ecx+0x24] ; jmp eax
+struct.pack('<L', 0x395b2)  # mov eax, dword [ecx+0x24] ; push edx ; push ebx ; push esi ; call eax
+struct.pack('<L', 0x5a5ed)  # mov eax, dword [ecx+eax] ; ret
+struct.pack('<L', 0x44c1d)  # mov eax, dword [ecx] ; add esp, 0x20 ; ret
+struct.pack('<L', 0x2b8c8)  # mov eax, dword [ecx] ; mov dword [ecx], edx ; ret
+struct.pack('<L', 0x1d4b2)  # mov eax, dword [ecx] ; mov eax, dword [eax] ; ret
+struct.pack('<L', 0x72e1d)  # mov eax, dword [ecx] ; pop edi ; ret
+struct.pack('<L', 0x5c4c2)  # mov eax, dword [ecx] ; push 0x00000000 ; push edx ; call eax
+struct.pack('<L', 0x391a6)  # mov eax, dword [ecx] ; ret
+struct.pack('<L', 0x88f30)  # mov eax, dword [ecx] ; xor edx, edx ; cmp eax, 0xC0000005 ; sete dl ; mov eax, edx ; ret
+struct.pack('<L', 0x70594)  # mov eax, dword [edi+0x04] ; pop edi ; pop esi ; pop ebp ; pop ebx ; ret
+struct.pack('<L', 0x5e7c3)  # mov eax, dword [edi+0x04] ; sub eax, dword [ebx+0x04] ; pop edi ; pop ebx ; ret
+struct.pack('<L', 0x44b08)  # mov eax, dword [edi+0x08] ; pop edi ; pop esi ; pop ebx ; add esp, 0x10 ; ret
+struct.pack('<L', 0x5eb32)  # mov eax, dword [edi+0x0C] ; mov dword [esi+0x0C], eax ; mov eax, esi ; pop esi ; pop edi ; ret
+struct.pack('<L', 0x3fa8f)  # mov eax, dword [edi+0x18] ; pop edi ; pop esi ; pop ebx ; add esp, 0x0C ; ret
+struct.pack('<L', 0x74649)  # mov eax, dword [edi+0x40] ; pop edi ; ret
+struct.pack('<L', 0x85c4f)  # mov eax, dword [edi+esi*4+0x04] ; pop esi ; pop edi ; ret
+struct.pack('<L', 0x8133b)  # mov eax, dword [edi] ; mov dword [eax+0x04], esi ; pop edi ; mov eax, 0x00000001 ; pop esi ; ret
+struct.pack('<L', 0x2db61)  # mov eax, dword [edi] ; mov dword [esi], eax ; mov ecx, dword [eax+0x24] ; push esi ; call ecx
+struct.pack('<L', 0x36e04)  # mov eax, dword [edi] ; mov edx, dword [eax+0x6C] ; push ebx ; push ecx ; push edi ; call edx
+struct.pack('<L', 0x5793c)  # mov eax, dword [edi] ; pop edi ; pop esi ; pop ebx ; ret
+struct.pack('<L', 0x31386)  # mov eax, dword [edi] ; push eax ; mov eax, dword [ecx+0x00000080] ; push edx ; push esi ; call eax
+struct.pack('<L', 0x37210)  # mov eax, dword [edx+0x00000080] ; push esi ; call eax
+struct.pack('<L', 0x36f42)  # mov eax, dword [edx+0x00000084] ; push edi ; push ebp ; push ebp ; push esi ; call eax
+struct.pack('<L', 0x36891)  # mov eax, dword [edx+0x00000084] ; push esi ; push ebx ; push ebp ; push edi ; call eax
+struct.pack('<L', 0x3706c)  # mov eax, dword [edx+0x00000084] ; push esi ; push ebx ; push ebx ; push edi ; call eax
+struct.pack('<L', 0x450ed)  # mov eax, dword [edx+0x08] ; pop edi ; add esp, 0x08 ; ret
+struct.pack('<L', 0x3f6ee)  # mov eax, dword [edx+0x08] ; pop edi ; pop esi ; pop ebx ; ret
+struct.pack('<L', 0x42cd8)  # mov eax, dword [edx+0x08] ; push ecx ; call eax
+struct.pack('<L', 0x53fa4)  # mov eax, dword [edx+0x08] ; ret
+struct.pack('<L', 0x435a6)  # mov eax, dword [edx+0x0C] ; push esi ; call eax
+struct.pack('<L', 0x58358)  # mov eax, dword [edx+0x10] ; push 0xFFFFFFFF ; call eax
+struct.pack('<L', 0x75af6)  # mov eax, dword [edx+0x10] ; push ecx ; call eax
+struct.pack('<L', 0x837ce)  # mov eax, dword [edx+0x14] ; and eax, 0x01 ; ret
+struct.pack('<L', 0x57ef3)  # mov eax, dword [edx+0x14] ; mov dword [esi], eax ; pop esi ; ret
+struct.pack('<L', 0x46b82)  # mov eax, dword [edx+0x14] ; push esi ; call eax
+struct.pack('<L', 0x42818)  # mov eax, dword [edx+0x18] ; lea ecx, dword [esp+0x2C] ; push ecx ; call eax
+struct.pack('<L', 0x27406)  # mov eax, dword [edx+0x18] ; push ecx ; push ebx ; push ebp ; call eax
+struct.pack('<L', 0x75d7d)  # mov eax, dword [edx+0x18] ; push esi ; push ecx ; call eax
+struct.pack('<L', 0x42fd3)  # mov eax, dword [edx+0x1C] ; push esi ; call eax
+struct.pack('<L', 0x3780e)  # mov eax, dword [edx+0x54] ; push esi ; call eax
+struct.pack('<L', 0x3777c)  # mov eax, dword [edx+0x5C] ; push ebp ; push ebx ; push esi ; call eax
+struct.pack('<L', 0x5a5eb)  # mov eax, dword [edx] ; mov eax, dword [ecx+eax] ; ret
+struct.pack('<L', 0x5f2da)  # mov eax, dword [edx] ; mov ecx, dword [ecx] ; sub ecx, dword [eax] ; mov eax, ecx ; ret
+struct.pack('<L', 0x2ed11)  # mov eax, dword [esi+0x00000098] ; mov dword [edi+0x00000098], eax ; pop edi ; mov eax, 0x00000001 ; pop esi ; ret
+struct.pack('<L', 0x6b6e6)  # mov eax, dword [esi+0x04] ; lea ecx, dword [esp+0x4C] ; push ecx ; push eax ; inc edi ; call dword [0x10093150]
+struct.pack('<L', 0x2e750)  # mov eax, dword [esi+0x04] ; mov ecx, dword [esi+0x08] ; push eax ; call ecx
+struct.pack('<L', 0x2da71)  # mov eax, dword [esi+0x04] ; mov ecx, dword [esi+0x0C] ; mov edi, dword [esi] ; push eax ; call ecx
+struct.pack('<L', 0x2dab1)  # mov eax, dword [esi+0x04] ; mov ecx, dword [esi+0x10] ; mov edi, dword [esi] ; push eax ; call ecx
+struct.pack('<L', 0x16d1)  # mov eax, dword [esi+0x04] ; pop edi ; pop esi ; ret
+struct.pack('<L', 0x68de9)  # mov eax, dword [esi+0x04] ; pop esi ; ret
+struct.pack('<L', 0x73615)  # mov eax, dword [esi+0x04] ; push 0x00000008 ; push 0x100B62D4 ; push eax ; call dword [0x10093168]
+struct.pack('<L', 0x1d1d)  # mov eax, dword [esi+0x04] ; push 0x0000011D ; push 0x1009350C ; push eax ; call dword [0x100E1AA4]
+struct.pack('<L', 0x1627)  # mov eax, dword [esi+0x04] ; push 0x0000014B ; push 0x1009350C ; push eax ; call dword [0x100E1AA4]
+struct.pack('<L', 0x3f6ff)  # mov eax, dword [esi+0x08] ; pop edi ; pop esi ; pop ebx ; ret
+struct.pack('<L', 0x4a675)  # mov eax, dword [esi+0x08] ; pop esi ; pop ebx ; pop ecx ; ret
+struct.pack('<L', 0x68c36)  # mov eax, dword [esi+0x08] ; pop esi ; ret
+struct.pack('<L', 0x2222b)  # mov eax, dword [esi+0x08] ; push esi ; push edx ; push 0x00000000 ; call eax
+struct.pack('<L', 0x44899)  # mov eax, dword [esi+0x08] ; sub eax, dword [edx+0x08] ; pop esi ; pop edi ; ret
+struct.pack('<L', 0x49272)  # mov eax, dword [esi+0x0C] ; add esp, 0x04 ; pop esi ; ret
+struct.pack('<L', 0x1d3e6)  # mov eax, dword [esi+0x0C] ; mov dword [edi+0x0C], eax ; mov eax, edi ; pop edi ; pop esi ; ret
+struct.pack('<L', 0x2ce64)  # mov eax, dword [esi+0x0C] ; push eax ; push ebx ; push esi ; call ecx
+struct.pack('<L', 0x57d95)  # mov eax, dword [esi+0x10] ; call eax
+struct.pack('<L', 0x3fa12)  # mov eax, dword [esi+0x10] ; pop edi ; pop esi ; pop ebx ; add esp, 0x0C ; ret
+struct.pack('<L', 0x3f5f5)  # mov eax, dword [esi+0x10] ; pop edi ; pop esi ; pop ebx ; ret
+struct.pack('<L', 0x5a821)  # mov eax, dword [esi+0x10] ; push edi ; call eax
+struct.pack('<L', 0x3f637)  # mov eax, dword [esi+0x10] ; sub eax, dword [esi+0x08] ; pop edi ; pop esi ; pop ebx ; ret
+struct.pack('<L', 0x78d7f)  # mov eax, dword [esi+0x14] ; mov eax, dword [eax+0x10] ; pop esi ; ret
+struct.pack('<L', 0x79051)  # mov eax, dword [esi+0x14] ; ret
+struct.pack('<L', 0x3f641)  # mov eax, dword [esi+0x18] ; pop edi ; pop esi ; pop ebx ; ret
+struct.pack('<L', 0x6c214)  # mov eax, dword [esi+0x18] ; push ebx ; call eax
+struct.pack('<L', 0x83b4a)  # mov eax, dword [esi+0x18] ; push edx ; push eax ; call ebx
+struct.pack('<L', 0x3fa08)  # mov eax, dword [esi+0x1C] ; pop edi ; pop esi ; pop ebx ; add esp, 0x0C ; ret
+struct.pack('<L', 0x6613b)  # mov eax, dword [esi+0x20] ; mov dword [esi+0x5C], 0x00000003 ; call eax
+struct.pack('<L', 0x67058)  # mov eax, dword [esi+0x20] ; mov dword [esi+0x5C], 0x0000000D ; mov dword [esi+0x60], edi ; call eax
+struct.pack('<L', 0x3a6d2)  # mov eax, dword [esi+0x20] ; push eax ; call dword [0x100D503C]
+struct.pack('<L', 0x670c1)  # mov eax, dword [esi+0x20] ; push esi ; push 0x00000000 ; mov dword [esi+0x5C], 0x0000000A ; mov dword [esi+0x60], edi ; call eax
+struct.pack('<L', 0x6636d)  # mov eax, dword [esi+0x20] ; push esi ; push 0x00000002 ; mov dword [esi+0x60], ecx ; mov dword [esi+0x5C], ecx ; call eax
+struct.pack('<L', 0x66e9b)  # mov eax, dword [esi+0x28] ; push ebp ; push ebp ; push esi ; call eax
+struct.pack('<L', 0x6c6a4)  # mov eax, dword [esi+0x28] ; push ebp ; push ebx ; push esi ; call eax
+struct.pack('<L', 0x67708)  # mov eax, dword [esi+0x28] ; push edi ; push edi ; push esi ; call eax
+struct.pack('<L', 0x677bc)  # mov eax, dword [esi+0x2C] ; push esi ; call eax
+struct.pack('<L', 0x66167)  # mov eax, dword [esi+0x38] ; push ebx ; push edx ; push esi ; call eax
+struct.pack('<L', 0x27cfc)  # mov eax, dword [esi+0x3C] ; and eax, 0xFFFFFFF7 ; or eax, 0x00000080 ; mov dword [esi+0x3C], eax ; pop esi ; ret
+struct.pack('<L', 0x2f2bb)  # mov eax, dword [esi+0x40] ; mov dword [edi+0x40], eax ; pop edi ; mov eax, 0x00000001 ; pop esi ; ret
+struct.pack('<L', 0x540de)  # mov eax, dword [esi+0x58] ; add esp, 0x08 ; mov dword [eax+0x04], 0x00000000 ; pop esi ; ret
+struct.pack('<L', 0x444e)  # mov eax, dword [esi] ; add esp, 0x0C ; push eax ; push ebx ; call dword [0x100930A0]
+struct.pack('<L', 0x392d5)  # mov eax, dword [esi] ; mov ecx, dword [eax+0x08] ; push ebx ; push ebp ; push esi ; call ecx
+struct.pack('<L', 0x39215)  # mov eax, dword [esi] ; mov ecx, dword [eax+0x0C] ; push ebx ; push ebp ; push esi ; call ecx
+struct.pack('<L', 0x3938c)  # mov eax, dword [esi] ; mov ecx, dword [eax+0x10] ; push ebx ; push esi ; call ecx
+struct.pack('<L', 0x39441)  # mov eax, dword [esi] ; mov ecx, dword [eax+0x14] ; push ebx ; push ebp ; push esi ; call ecx
+struct.pack('<L', 0x46160)  # mov eax, dword [esi] ; mov ecx, dword [eax+0x20] ; push esi ; call ecx
+struct.pack('<L', 0x377f3)  # mov eax, dword [esi] ; mov ecx, dword [eax+0x5C] ; push ebp ; push ebx ; push esi ; call ecx
+struct.pack('<L', 0x5897b)  # mov eax, dword [esi] ; mov ecx, dword [ecx+0x0C] ; push edi ; push eax ; call ecx
+struct.pack('<L', 0x3ff48)  # mov eax, dword [esi] ; pop ebx ; mov dword [esi+0x08], 0x00000000 ; pop esi ; ret
+struct.pack('<L', 0x3ff2f)  # mov eax, dword [esi] ; pop edi ; pop ebx ; mov dword [esi+0x08], 0x00000000 ; pop esi ; ret
+struct.pack('<L', 0x441a7)  # mov eax, dword [esi] ; pop edi ; xor eax, ecx ; pop esi ; ret
+struct.pack('<L', 0x44c2)  # mov eax, dword [esi] ; pop esi ; add eax, 0x00000144 ; pop ebx ; ret
+struct.pack('<L', 0x5a5c6)  # mov eax, dword [esi] ; pop esi ; add esp, 0x1C ; ret
+struct.pack('<L', 0x72e14)  # mov eax, dword [esi] ; pop esi ; pop edi ; ret
+struct.pack('<L', 0x40290)  # mov eax, dword [esi] ; push 0x00000004 ; push eax ; push ecx ; call dword [0x10093148]
+struct.pack('<L', 0x3b2cd)  # mov eax, dword [esi] ; push ebp ; push eax ; push ebx ; call edi
+struct.pack('<L', 0x2c7b5)  # mov eax, dword [esi] ; push edx ; push eax ; lea ecx, dword [ebp+0x02] ; push ecx ; call dword [0x100930F4]
+struct.pack('<L', 0x3dc18)  # mov eax, dword [esp+0x04] ; add esp, 0x08 ; ret
+struct.pack('<L', 0x52382)  # mov eax, dword [esp+0x04] ; add esp, 0x14 ; ret
+struct.pack('<L', 0x50e44)  # mov eax, dword [esp+0x04] ; add esp, 0x20 ; ret
+struct.pack('<L', 0x5f140)  # mov eax, dword [esp+0x04] ; mov dword [0x100DFBD0], eax ; ret
+struct.pack('<L', 0x65940)  # mov eax, dword [esp+0x04] ; mov dword [0x100DFED8], eax ; ret
+struct.pack('<L', 0x1760)  # mov eax, dword [esp+0x04] ; mov dword [0x100E1A90], eax ; ret
+struct.pack('<L', 0x1770)  # mov eax, dword [esp+0x04] ; mov dword [0x100E1A94], eax ; ret
+struct.pack('<L', 0x1790)  # mov eax, dword [esp+0x04] ; mov dword [0x100E1A98], eax ; ret
+struct.pack('<L', 0x1710)  # mov eax, dword [esp+0x04] ; mov dword [0x100E1A9C], eax ; ret
+struct.pack('<L', 0x1730)  # mov eax, dword [esp+0x04] ; mov dword [0x100E1AA4], eax ; ret
+struct.pack('<L', 0x25c0)  # mov eax, dword [esp+0x04] ; mov dword [0x100E1AD8], eax ; ret
+struct.pack('<L', 0x279b0)  # mov eax, dword [esp+0x04] ; mov dword [0x100E1E74], eax ; ret
+struct.pack('<L', 0x2aa10)  # mov eax, dword [esp+0x04] ; mov dword [0x100E1E78], eax ; ret
+struct.pack('<L', 0x2b8a0)  # mov eax, dword [esp+0x04] ; mov dword [0x100E1E7C], eax ; ret
+struct.pack('<L', 0x2d0c0)  # mov eax, dword [esp+0x04] ; mov dword [0x100E1E80], eax ; ret
+struct.pack('<L', 0x378a0)  # mov eax, dword [esp+0x04] ; mov dword [0x100E1E84], eax ; ret
+struct.pack('<L', 0x37dd0)  # mov eax, dword [esp+0x04] ; mov dword [0x100E1E88], eax ; ret
+struct.pack('<L', 0x41860)  # mov eax, dword [esp+0x04] ; mov dword [0x100E2490], eax ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x75640)  # mov eax, dword [esp+0x04] ; mov dword [0x100E3C0C], eax ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x83850)  # mov eax, dword [esp+0x04] ; mov dword [0x100E3C2C], eax ; ret
+struct.pack('<L', 0x459f0)  # mov eax, dword [esp+0x04] ; mov dword [eax+0x04], 0x00000030 ; mov dword [eax], 0x00000000 ; mov dword [eax+0x58], 0x00000000 ; ret
+struct.pack('<L', 0x4c4dd)  # mov eax, dword [esp+0x04] ; mov dword [eax], 0x00000000 ; ret
+struct.pack('<L', 0x579f0)  # mov eax, dword [esp+0x04] ; mov dword [eax], edx ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x57aba)  # mov eax, dword [esp+0x04] ; mov dword [eax], edx ; ret
+struct.pack('<L', 0x448e0)  # mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x04] ; inc dword [eax+0x08] ; ret
+struct.pack('<L', 0x5e840)  # mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x04] ; ret
+struct.pack('<L', 0x4b280)  # mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x08] ; and eax, dword [esp+0x08] ; ret
+struct.pack('<L', 0x5e850)  # mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x08] ; ret
+struct.pack('<L', 0x39160)  # mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x14] ; and eax, dword [esp+0x08] ; ret
+struct.pack('<L', 0x87dc0)  # mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x18] ; ret
+struct.pack('<L', 0x87dd0)  # mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x1C] ; ret
+struct.pack('<L', 0x87de0)  # mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x20] ; ret
+struct.pack('<L', 0x87df0)  # mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x24] ; ret
+struct.pack('<L', 0x87e10)  # mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x2C] ; ret
+struct.pack('<L', 0x2d6e0)  # mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x30] ; ret
+struct.pack('<L', 0x2d7a0)  # mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x40] ; ret
+struct.pack('<L', 0x665b0)  # mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x4C] ; ret
+struct.pack('<L', 0x66840)  # mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x50] ; ret
+struct.pack('<L', 0x66850)  # mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x54] ; ret
+struct.pack('<L', 0x66590)  # mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x58] ; ret
+struct.pack('<L', 0x66570)  # mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x5C] ; ret
+struct.pack('<L', 0x665a0)  # mov eax, dword [esp+0x04] ; mov eax, dword [eax+0x60] ; ret
+struct.pack('<L', 0x42e70)  # mov eax, dword [esp+0x04] ; mov eax, dword [eax] ; imul eax, eax, 0x0D ; ret
+struct.pack('<L', 0x37a0)  # mov eax, dword [esp+0x04] ; mov eax, dword [eax] ; mov ecx, dword [esp+0x08] ; sub eax, dword [ecx] ; ret
+struct.pack('<L', 0x83880)  # mov eax, dword [esp+0x04] ; mov eax, dword [eax] ; ret
+struct.pack('<L', 0x448c0)  # mov eax, dword [esp+0x04] ; mov ecx, dword [eax+0x04] ; mov dword [ecx+0x08], 0x00000000 ; mov eax, dword [eax+0x04] ; or dword [eax+0x14], 0x0D ; ret
+struct.pack('<L', 0x4c4c9)  # mov eax, dword [esp+0x04] ; mov ecx, dword [eax+0x0C] ; mov dword [eax], 0x00000001 ; mov dword [ecx], 0x00000010 ; ret
+struct.pack('<L', 0x2b040)  # mov eax, dword [esp+0x04] ; mov ecx, dword [eax+0x3C] ; mov dword [esp+0x04], eax ; mov eax, dword [ecx+0x08] ; jmp eax
+struct.pack('<L', 0x460b0)  # mov eax, dword [esp+0x04] ; mov ecx, dword [eax] ; mov dword [esp+0x04], eax ; mov eax, dword [ecx+0x14] ; jmp eax
+struct.pack('<L', 0x4b210)  # mov eax, dword [esp+0x04] ; mov ecx, dword [eax] ; mov dword [esp+0x04], eax ; mov eax, dword [ecx+0x18] ; jmp eax
+struct.pack('<L', 0x4b250)  # mov eax, dword [esp+0x04] ; mov ecx, dword [eax] ; mov eax, dword [ecx+0x0C] ; ret
+struct.pack('<L', 0x4b230)  # mov eax, dword [esp+0x04] ; mov ecx, dword [eax] ; mov eax, dword [ecx+0x10] ; ret
+struct.pack('<L', 0x64c30)  # mov eax, dword [esp+0x04] ; mov ecx, dword [eax] ; mov eax, dword [ecx+0x14] ; ret
+struct.pack('<L', 0x391a0)  # mov eax, dword [esp+0x04] ; mov ecx, dword [eax] ; mov eax, dword [ecx] ; ret
+struct.pack('<L', 0x6c530)  # mov eax, dword [esp+0x04] ; mov ecx, dword [esp+0x08] ; mov dword [eax+0x14], 0x100E02F8 ; mov dword [eax+0x18], ecx ; ret
+struct.pack('<L', 0x6c5a0)  # mov eax, dword [esp+0x04] ; mov ecx, dword [esp+0x08] ; mov dword [eax+0x14], 0x100E0308 ; mov dword [eax+0x18], ecx ; ret
+struct.pack('<L', 0x66760)  # mov eax, dword [esp+0x04] ; mov ecx, dword [esp+0x08] ; mov dword [eax+0x18], ecx ; mov dword [eax+0x24], 0x10065E50 ; ret
+struct.pack('<L', 0x4b260)  # mov eax, dword [esp+0x04] ; mov ecx, dword [esp+0x08] ; or dword [eax+0x08], ecx ; ret
+struct.pack('<L', 0x39170)  # mov eax, dword [esp+0x04] ; mov ecx, dword [esp+0x08] ; or dword [eax+0x14], ecx ; ret
+struct.pack('<L', 0x88560)  # mov eax, dword [esp+0x04] ; mul ecx ; retn 0x0010
+struct.pack('<L', 0x4b274)  # mov eax, dword [esp+0x04] ; not ecx ; and dword [eax+0x08], ecx ; ret
+struct.pack('<L', 0x6b9d4)  # mov eax, dword [esp+0x04] ; not ecx ; and dword [eax+0x14], ecx ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x39154)  # mov eax, dword [esp+0x04] ; not ecx ; and dword [eax+0x14], ecx ; ret
+struct.pack('<L', 0x2d090)  # mov eax, dword [esp+0x04] ; or dword [eax+0x1C], 0x01 ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x2b7d0)  # mov eax, dword [esp+0x04] ; or dword [eax+0x28], 0x01 ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x27510)  # mov eax, dword [esp+0x04] ; or dword [eax+0x3C], 0x06 ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x43c0)  # mov eax, dword [esp+0x04] ; push eax ; call dword [0x100930EC]
+struct.pack('<L', 0x1d50)  # mov eax, dword [esp+0x04] ; push eax ; call dword [0x100D5070]
+struct.pack('<L', 0x1d80)  # mov eax, dword [esp+0x04] ; push eax ; call dword [0x100D5084]
+struct.pack('<L', 0x75b32)  # mov eax, dword [esp+0x04] ; push ecx ; mov ecx, dword [eax+0x18] ; lea edx, dword [esp+0x08] ; push edx ; call ecx
+struct.pack('<L', 0x5a7fc)  # mov eax, dword [esp+0x04] ; ret
+struct.pack('<L', 0x2b289)  # mov eax, dword [esp+0x08] ; add esp, 0x38 ; ret
+struct.pack('<L', 0x511d0)  # mov eax, dword [esp+0x08] ; inc dword [eax] ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x57ddb)  # mov eax, dword [esp+0x08] ; mov dword [eax], 0x00000000 ; mov eax, 0x00000001 ; pop esi ; ret
+struct.pack('<L', 0x2bca0)  # mov eax, dword [esp+0x08] ; mov dword [ecx+0x18], eax ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x5a5e0)  # mov eax, dword [esp+0x08] ; mov ecx, dword [eax+0x04] ; mov edx, dword [esp+0x04] ; mov eax, dword [edx] ; mov eax, dword [ecx+eax] ; ret
+struct.pack('<L', 0x7624b)  # mov eax, dword [esp+0x08] ; mov ecx, dword [eax+0x08] ; push esi ; call ecx
+struct.pack('<L', 0x533d0)  # mov eax, dword [esp+0x08] ; mov ecx, dword [eax+0x14] ; mov edx, dword [esp+0x04] ; mov dword [edx], ecx ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x533f0)  # mov eax, dword [esp+0x08] ; mov ecx, dword [eax+0x14] ; mov edx, dword [esp+0x04] ; mov dword [edx], ecx ; ret
+struct.pack('<L', 0x3a374)  # mov eax, dword [esp+0x08] ; mov ecx, dword [eax+0x1C] ; push esi ; push 0x00000000 ; push ecx ; call dword [0x100D5054]
+struct.pack('<L', 0x6614c)  # mov eax, dword [esp+0x08] ; mov ecx, dword [esi+0x34] ; push eax ; push esi ; mov dword [esi+0x68], eax ; call ecx
+struct.pack('<L', 0x87be0)  # mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x04], eax ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x39180)  # mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x04], eax ; ret
+struct.pack('<L', 0x39190)  # mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x08], eax ; ret
+struct.pack('<L', 0x77190)  # mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x0C], eax ; ret
+struct.pack('<L', 0x87c40)  # mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x10], eax ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x20310)  # mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x10], eax ; ret
+struct.pack('<L', 0x87c60)  # mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x14], eax ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x771a0)  # mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x14], eax ; ret
+struct.pack('<L', 0x87c80)  # mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x18], eax ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x87ca0)  # mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x1C], eax ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x87cc0)  # mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x20], eax ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x6ba10)  # mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x20], eax ; ret
+struct.pack('<L', 0x87ce0)  # mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x24], eax ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x2d6d0)  # mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x30], eax ; ret
+struct.pack('<L', 0x87d40)  # mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x34], eax ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x2d6f0)  # mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x34], eax ; ret
+struct.pack('<L', 0x87d60)  # mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x38], eax ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x2d710)  # mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x38], eax ; ret
+struct.pack('<L', 0x87d80)  # mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x3C], eax ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x87da0)  # mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x40], eax ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x4b240)  # mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x54], eax ; ret
+struct.pack('<L', 0x66580)  # mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx+0x5C], eax ; ret
+struct.pack('<L', 0x84b60)  # mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; mov dword [ecx], eax ; ret
+struct.pack('<L', 0x1d60)  # mov eax, dword [esp+0x08] ; mov ecx, dword [esp+0x04] ; push eax ; push ecx ; call dword [0x100D5078]
+struct.pack('<L', 0x3a3d7)  # mov eax, dword [esp+0x08] ; mov esi, dword [eax+0x10] ; mov eax, esi ; pop esi ; ret
+struct.pack('<L', 0x88578)  # mov eax, dword [esp+0x08] ; mul ecx ; add edx, ebx ; pop ebx ; retn 0x0010
+struct.pack('<L', 0x2713f)  # mov eax, dword [esp+0x08] ; pop ebx ; pop edi ; add esp, 0x08 ; ret
+struct.pack('<L', 0x3351e)  # mov eax, dword [esp+0x08] ; pop esi ; pop ebp ; add esp, 0x08 ; ret
+struct.pack('<L', 0x37851)  # mov eax, dword [esp+0x08] ; pop esi ; pop ebp ; add esp, 0x0C ; ret
+struct.pack('<L', 0x36ccd)  # mov eax, dword [esp+0x08] ; pop esi ; pop ebx ; add esp, 0x10 ; ret
+struct.pack('<L', 0x2312c)  # mov eax, dword [esp+0x0C] ; add esp, 0x04 ; pop edi ; pop esi ; add esp, 0x24 ; ret
+struct.pack('<L', 0x2a9d7)  # mov eax, dword [esp+0x0C] ; add esp, 0x04 ; pop esi ; pop ebp ; add esp, 0x18 ; ret
+struct.pack('<L', 0x21b1c)  # mov eax, dword [esp+0x0C] ; add esp, 0x04 ; pop esi ; pop ebp ; pop ecx ; ret
+struct.pack('<L', 0x25fd4)  # mov eax, dword [esp+0x0C] ; add esp, 0x04 ; pop esi ; pop edi ; pop ecx ; ret
+struct.pack('<L', 0x5e4c3)  # mov eax, dword [esp+0x0C] ; mov dword [eax], esi ; pop edi ; lea eax, dword [esi+0x01] ; pop esi ; ret
+struct.pack('<L', 0x5e514)  # mov eax, dword [esp+0x0C] ; mov dword [eax], esi ; pop edi ; mov eax, 0x00000001 ; pop esi ; ret
+struct.pack('<L', 0x4f619)  # mov eax, dword [esp+0x0C] ; mov dword [ecx+0x04], eax ; ret
+struct.pack('<L', 0x7862d)  # mov eax, dword [esp+0x0C] ; mov dword [edx+0x08], eax ; mov eax, 0x00000001 ; pop esi ; ret
+struct.pack('<L', 0x78651)  # mov eax, dword [esp+0x0C] ; mov dword [edx+0x14], eax ; mov eax, 0x00000001 ; pop esi ; ret
+struct.pack('<L', 0x7cc01)  # mov eax, dword [esp+0x0C] ; mov dword [esi+0x04], eax ; add esp, 0x04 ; mov eax, esi ; pop esi ; ret
+struct.pack('<L', 0x2afe0)  # mov eax, dword [esp+0x0C] ; mov ecx, dword [eax+0x3C] ; mov dword [esp+0x0C], eax ; mov ecx, dword [ecx+0x04] ; jmp ecx
+struct.pack('<L', 0x2cd30)  # mov eax, dword [esp+0x0C] ; mov ecx, dword [eax+0x44] ; mov dword [esp+0x0C], eax ; mov ecx, dword [ecx+0x08] ; jmp ecx
+struct.pack('<L', 0x52378)  # mov eax, dword [esp+0x0C] ; mov edx, dword [esp+0x18] ; mov dword [edx], eax ; mov eax, dword [esp+0x04] ; add esp, 0x14 ; ret
+struct.pack('<L', 0x2bc56)  # mov eax, dword [esp+0x0C] ; or dword [ecx+0x0C], eax ; xor eax, eax ; ret
+struct.pack('<L', 0x37d4f)  # mov eax, dword [esp+0x0C] ; pop ebp ; add esp, 0x18 ; ret
+struct.pack('<L', 0x264fa)  # mov eax, dword [esp+0x0C] ; pop ebx ; pop edi ; add esp, 0x08 ; ret
+struct.pack('<L', 0x2f436)  # mov eax, dword [esp+0x0C] ; pop edi ; pop esi ; add esp, 0x08 ; ret
+struct.pack('<L', 0x3fa44)  # mov eax, dword [esp+0x0C] ; pop edi ; pop esi ; pop ebx ; add esp, 0x0C ; ret
+struct.pack('<L', 0x358c6)  # mov eax, dword [esp+0x0C] ; pop edi ; pop esi ; pop ebx ; pop ecx ; ret
+struct.pack('<L', 0x389cc)  # mov eax, dword [esp+0x0C] ; pop esi ; pop ebp ; add esp, 0x14 ; ret
+struct.pack('<L', 0x51e22)  # mov eax, dword [esp+0x0C] ; pop esi ; pop ebp ; pop ebx ; add esp, 0x0C ; ret
+struct.pack('<L', 0x33c41)  # mov eax, dword [esp+0x0C] ; pop esi ; pop edi ; pop ebp ; add esp, 0x10 ; ret
+struct.pack('<L', 0x1d2fd)  # mov eax, dword [esp+0x0C] ; pop esi ; ret
+struct.pack('<L', 0x21865)  # mov eax, dword [esp+0x0C] ; push edx ; mov edx, dword [esp+0x0C] ; push eax ; push edx ; call ecx
+struct.pack('<L', 0x668a2)  # mov eax, dword [esp+0x10] ; add esp, 0x04 ; mov dword [esi+0x14], eax ; pop esi ; ret
+struct.pack('<L', 0x6c421)  # mov eax, dword [esp+0x10] ; add esp, 0x0C ; pop esi ; pop ecx ; ret
+struct.pack('<L', 0x49ba5)  # mov eax, dword [esp+0x10] ; add esp, 0x0C ; ret
+struct.pack('<L', 0x46659)  # mov eax, dword [esp+0x10] ; mov dword [eax], ebx ; lea eax, dword [ebx+0x01] ; pop ebx ; ret
+struct.pack('<L', 0x430de)  # mov eax, dword [esp+0x10] ; mov dword [edi+esi*4+0x00000084], edx ; mov dword [edi+esi*4+0x000000C4], eax ; pop edi ; pop esi ; ret
+struct.pack('<L', 0x203bf)  # mov eax, dword [esp+0x10] ; mov dword [esi+0x0C], eax ; mov dword [esi+0x14], 0x00000020 ; mov eax, esi ; pop esi ; ret
+struct.pack('<L', 0x27c90)  # mov eax, dword [esp+0x10] ; mov ecx, dword [eax+0x08] ; mov dword [esp+0x10], eax ; mov ecx, dword [ecx+0x04] ; jmp ecx
+struct.pack('<L', 0x27cc0)  # mov eax, dword [esp+0x10] ; mov ecx, dword [eax+0x08] ; mov dword [esp+0x10], eax ; mov ecx, dword [ecx+0x08] ; jmp ecx
+struct.pack('<L', 0x27ca0)  # mov eax, dword [esp+0x10] ; mov ecx, dword [eax+0x08] ; mov dword [esp+0x10], eax ; mov ecx, dword [ecx+0x0C] ; jmp ecx
+struct.pack('<L', 0x27cb0)  # mov eax, dword [esp+0x10] ; mov ecx, dword [eax+0x08] ; mov dword [esp+0x10], eax ; mov ecx, dword [ecx+0x10] ; jmp ecx
+struct.pack('<L', 0x2af60)  # mov eax, dword [esp+0x10] ; mov ecx, dword [eax+0x3C] ; mov dword [esp+0x10], eax ; mov eax, dword [ecx+0x0C] ; jmp eax
+struct.pack('<L', 0x6acbd)  # mov eax, dword [esp+0x10] ; mov ecx, dword [esp+0x08] ; push eax ; push ecx ; push esi ; call dword [0x100E0110]
+struct.pack('<L', 0x484f8)  # mov eax, dword [esp+0x10] ; mov edx, dword [ecx] ; mov dword [eax], edx ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x59113)  # mov eax, dword [esp+0x10] ; pop ebp ; pop ebx ; add esp, 0x0C ; ret
+struct.pack('<L', 0x3a165)  # mov eax, dword [esp+0x10] ; pop edi ; mov byte [eax], 0x00000000 ; xor eax, eax ; pop esi ; ret
+struct.pack('<L', 0x6df57)  # mov eax, dword [esp+0x10] ; pop edi ; mov dword [eax], 0x00000000 ; mov eax, 0x00000001 ; pop esi ; ret
+struct.pack('<L', 0x2ee98)  # mov eax, dword [esp+0x10] ; pop edi ; pop esi ; pop ebx ; add esp, 0x08 ; ret
+struct.pack('<L', 0x3fa84)  # mov eax, dword [esp+0x10] ; pop edi ; pop esi ; pop ebx ; add esp, 0x0C ; ret
+struct.pack('<L', 0x2fbe0)  # mov eax, dword [esp+0x10] ; pop esi ; pop ebx ; add esp, 0x10 ; ret
+struct.pack('<L', 0x31115)  # mov eax, dword [esp+0x10] ; pop esi ; pop edi ; pop ebp ; add esp, 0x08 ; ret
+struct.pack('<L', 0x36dc8)  # mov eax, dword [esp+0x10] ; pop esi ; pop edi ; pop ebx ; add esp, 0x08 ; ret
+struct.pack('<L', 0x2e3de)  # mov eax, dword [esp+0x10] ; push eax ; push edx ; push esi ; call ecx
+struct.pack('<L', 0x2bdf9)  # mov eax, dword [esp+0x10] ; push eax ; push esi ; push ecx ; call edx
+struct.pack('<L', 0x517e4)  # mov eax, dword [esp+0x10] ; push esi ; push 0x00000001 ; push eax ; call dword [0x10093120]
+struct.pack('<L', 0x5cdbd)  # mov eax, dword [esp+0x14] ; mov dword [ecx+0x08], eax ; mov dword [ecx+0x0C], edx ; mov eax, 0x00000001 ; pop esi ; ret
+struct.pack('<L', 0x4f5fe)  # mov eax, dword [esp+0x14] ; mov dword [ecx], edx ; mov ecx, dword [esp+0x0C] ; add esp, 0x08 ; mov dword [ecx+0x04], eax ; ret
+struct.pack('<L', 0x443c6)  # mov eax, dword [esp+0x14] ; mov ecx, dword [eax+esi*4] ; push edi ; push ecx ; call ebx
+struct.pack('<L', 0x4ee61)  # mov eax, dword [esp+0x14] ; pop ebp ; pop edi ; pop esi ; pop ebx ; ret
+struct.pack('<L', 0x67dc7)  # mov eax, dword [esp+0x14] ; pop edi ; pop ebx ; pop esi ; pop ebp ; ret
+struct.pack('<L', 0x717c1)  # mov eax, dword [esp+0x14] ; pop edi ; pop ebx ; ret
+struct.pack('<L', 0x55b93)  # mov eax, dword [esp+0x14] ; pop edi ; pop esi ; pop ebx ; add esp, 0x0C ; ret
+struct.pack('<L', 0x6feec)  # mov eax, dword [esp+0x14] ; pop edi ; pop esi ; ret
+struct.pack('<L', 0x49ff7)  # mov eax, dword [esp+0x14] ; pop esi ; pop ebp ; pop ebx ; add esp, 0x10 ; ret
+struct.pack('<L', 0x3ab4d)  # mov eax, dword [esp+0x14] ; push edx ; push eax ; push esi ; call dword [0x1009313C]
+struct.pack('<L', 0x3838d)  # mov eax, dword [esp+0x18] ; pop ebx ; pop edi ; pop esi ; add esp, 0x10 ; ret
+struct.pack('<L', 0x26abe)  # mov eax, dword [esp+0x18] ; pop edi ; pop esi ; pop ebp ; add esp, 0x38 ; ret
+struct.pack('<L', 0x1f657)  # mov eax, dword [esp+0x18] ; pop edi ; pop esi ; pop ebp ; pop ebx ; ret
+struct.pack('<L', 0x2f855)  # mov eax, dword [esp+0x18] ; pop esi ; pop edi ; pop ebx ; add esp, 0x10 ; ret
+struct.pack('<L', 0x2dffe)  # mov eax, dword [esp+0x18] ; push eax ; push edx ; push esi ; call ecx
+struct.pack('<L', 0x4cc48)  # mov eax, dword [esp+0x1C] ; add esp, 0x0C ; pop edi ; pop ebp ; add esp, 0x0C ; ret
+struct.pack('<L', 0x57425)  # mov eax, dword [esp+0x1C] ; add esp, 0x14 ; pop edi ; pop ebx ; pop ecx ; ret
+struct.pack('<L', 0x3f04b)  # mov eax, dword [esp+0x1C] ; pop edi ; pop esi ; pop ebp ; pop ebx ; ret
+struct.pack('<L', 0x3eeab)  # mov eax, dword [esp+0x1C] ; pop esi ; pop ebp ; pop edi ; pop ebx ; ret
+struct.pack('<L', 0x52151)  # mov eax, dword [esp+0x1C] ; push eax ; call ebx
+struct.pack('<L', 0x2e14d)  # mov eax, dword [esp+0x1C] ; push eax ; push edx ; push esi ; call ecx
+struct.pack('<L', 0x65dd2)  # mov eax, dword [esp+0x1C] ; push edi ; push eax ; push ebp ; call ecx
+struct.pack('<L', 0x283aa)  # mov eax, dword [esp+0x20] ; add esp, 0x14 ; pop ebp ; pop esi ; add esp, 0x0C ; ret
+struct.pack('<L', 0x3696c)  # mov eax, dword [esp+0x20] ; pop edi ; pop esi ; pop ebx ; add esp, 0x20 ; ret
+struct.pack('<L', 0x30ef8)  # mov eax, dword [esp+0x20] ; push eax ; push edi ; call dword [esp+0x30]
+struct.pack('<L', 0x69b51)  # mov eax, dword [esp+0x24] ; mov ecx, dword [esi+0x28] ; push edx ; push eax ; push esi ; call ecx
+struct.pack('<L', 0x33e39)  # mov eax, dword [esp+0x24] ; pop edi ; pop esi ; pop ebp ; add esp, 0x1C ; ret
+struct.pack('<L', 0x63beb)  # mov eax, dword [esp+0x24] ; push edx ; push eax ; call dword [esp+0x20]
+struct.pack('<L', 0x6be4a)  # mov eax, dword [esp+0x28] ; add esp, 0x18 ; pop esi ; ret
+struct.pack('<L', 0x59db9)  # mov eax, dword [esp+0x28] ; mov ecx, dword [eax+0x08] ; push edx ; push ebp ; push ebx ; call ecx
+struct.pack('<L', 0x41d65)  # mov eax, dword [esp+0x28] ; push 0x100A84DC ; push eax ; call esi
+struct.pack('<L', 0x41c0)  # mov eax, dword [esp+0x2C] ; push eax ; call ecx
+struct.pack('<L', 0x41da6)  # mov eax, dword [esp+0x34] ; lea edx, dword [esp+0x000004B8] ; push edx ; push 0x00000040 ; push eax ; call dword [esp+0x2C]
+struct.pack('<L', 0x41ae4)  # mov eax, dword [esp+0x44] ; push 0x00000010 ; push eax ; push edi ; call dword [0x10093018]
+struct.pack('<L', 0x41bd6)  # mov eax, dword [esp+0x4C] ; push eax ; push ebx ; call dword [0x1009301C]
+struct.pack('<L', 0x583f5)  # mov eax, dword [esp+0x54] ; add esp, 0x14 ; push ecx ; mov ecx, dword [eax+0x10] ; push edx ; call ecx
+struct.pack('<L', 0x2f1bd)  # mov eax, dword [esp] ; add esp, 0x0C ; ret
+struct.pack('<L', 0x75aac)  # mov eax, dword [esp] ; add esp, 0x10 ; ret
+struct.pack('<L', 0x884d8)  # mov eax, ecx ; pop ecx ; xchg eax, esp ; mov eax, dword [eax] ; mov dword [esp], eax ; ret
+struct.pack('<L', 0x66e99)  # mov ebp, eax ; mov eax, dword [esi+0x28] ; push ebp ; push ebp ; push esi ; call eax
+struct.pack('<L', 0x842ac)  # mov ebx, dword [0x10093108] ; push eax ; mov eax, dword [0x100E3C38] ; push 0x100B95E0 ; push eax ; call ebx
+struct.pack('<L', 0x41bcf)  # mov ebx, dword [esp+0x44] ; add esp, 0x04 ; mov eax, dword [esp+0x4C] ; push eax ; push ebx ; call dword [0x1009301C]
+struct.pack('<L', 0x448c4)  # mov ecx, dword [eax+0x04] ; mov dword [ecx+0x08], 0x00000000 ; mov eax, dword [eax+0x04] ; or dword [eax+0x14], 0x0D ; ret
+struct.pack('<L', 0x44cba)  # mov ecx, dword [eax+0x04] ; mov eax, dword [ecx+0x04] ; add esp, 0x20 ; ret
+struct.pack('<L', 0x44c1a)  # mov ecx, dword [eax+0x04] ; mov eax, dword [ecx] ; add esp, 0x20 ; ret
+struct.pack('<L', 0x5a5e4)  # mov ecx, dword [eax+0x04] ; mov edx, dword [esp+0x04] ; mov eax, dword [edx] ; mov eax, dword [ecx+eax] ; ret
+struct.pack('<L', 0x6517b)  # mov ecx, dword [eax+0x18] ; mov eax, dword [ecx+0x04] ; ret
+struct.pack('<L', 0x2b044)  # mov ecx, dword [eax+0x3C] ; mov dword [esp+0x04], eax ; mov eax, dword [ecx+0x08] ; jmp eax
+struct.pack('<L', 0x2af64)  # mov ecx, dword [eax+0x3C] ; mov dword [esp+0x10], eax ; mov eax, dword [ecx+0x0C] ; jmp eax
+struct.pack('<L', 0x484f5)  # mov ecx, dword [eax+0x60] ; mov eax, dword [esp+0x10] ; mov edx, dword [ecx] ; mov dword [eax], edx ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x460b4)  # mov ecx, dword [eax] ; mov dword [esp+0x04], eax ; mov eax, dword [ecx+0x14] ; jmp eax
+struct.pack('<L', 0x4b214)  # mov ecx, dword [eax] ; mov dword [esp+0x04], eax ; mov eax, dword [ecx+0x18] ; jmp eax
+struct.pack('<L', 0x756f3)  # mov ecx, dword [eax] ; mov dword [esp+0x04], eax ; mov eax, dword [ecx+0x24] ; jmp eax
+struct.pack('<L', 0x4b204)  # mov ecx, dword [eax] ; mov eax, dword [ecx+0x04] ; ret
+struct.pack('<L', 0x4b254)  # mov ecx, dword [eax] ; mov eax, dword [ecx+0x0C] ; ret
+struct.pack('<L', 0x4b234)  # mov ecx, dword [eax] ; mov eax, dword [ecx+0x10] ; ret
+struct.pack('<L', 0x64c34)  # mov ecx, dword [eax] ; mov eax, dword [ecx+0x14] ; ret
+struct.pack('<L', 0x391a4)  # mov ecx, dword [eax] ; mov eax, dword [ecx] ; ret
+struct.pack('<L', 0x75bb7)  # mov ecx, dword [eax] ; push edx ; push edi ; push eax ; mov eax, dword [ecx+0x14] ; call eax
+struct.pack('<L', 0x44125)  # mov ecx, dword [ebx+0x08] ; mov edx, dword [esi+0x08] ; mov eax, dword [eax+0x04] ; push ecx ; push edx ; call eax
+struct.pack('<L', 0x1d2f9)  # mov ecx, dword [ecx] ; mov dword [eax], ecx ; mov eax, dword [esp+0x0C] ; pop esi ; ret
+struct.pack('<L', 0x53f6e)  # mov ecx, dword [edx+0x58] ; mov edx, dword [ecx+0x08] ; mov eax, dword [edx+0x08] ; ret
+struct.pack('<L', 0x53f9e)  # mov ecx, dword [edx+0x58] ; mov edx, dword [ecx+0x0C] ; mov eax, dword [edx+0x08] ; ret
+struct.pack('<L', 0x78d66)  # mov ecx, dword [esi+0x14] ; mov eax, dword [ecx+0x10] ; pop esi ; ret
+struct.pack('<L', 0x460e9)  # mov ecx, dword [esi] ; mov eax, dword [ecx+0x18] ; push edx ; push esi ; call eax
+struct.pack('<L', 0x7588b)  # mov ecx, dword [esi] ; mov eax, dword [ecx+0x1C] ; inc edi ; push edx ; push esi ; call eax
+struct.pack('<L', 0x395b0)  # mov ecx, dword [esi] ; mov eax, dword [ecx+0x24] ; push edx ; push ebx ; push esi ; call eax
+struct.pack('<L', 0x6a870)  # mov ecx, dword [esp+0x04] ; mov eax, dword [0x100E0110] ; mov dword [0x100E0110], ecx ; ret
+struct.pack('<L', 0x4f615)  # mov ecx, dword [esp+0x04] ; mov eax, dword [esp+0x0C] ; mov dword [ecx+0x04], eax ; ret
+struct.pack('<L', 0x835e0)  # mov ecx, dword [esp+0x04] ; mov edx, dword [esp+0x08] ; mov eax, dword [ecx+0x08] ; mov dword [ecx+0x08], edx ; ret
+struct.pack('<L', 0x2b8c0)  # mov ecx, dword [esp+0x04] ; mov edx, dword [esp+0x08] ; mov eax, dword [ecx] ; mov dword [ecx], edx ; ret
+struct.pack('<L', 0x72e19)  # mov ecx, dword [esp+0x08] ; mov eax, dword [ecx] ; pop edi ; ret
+struct.pack('<L', 0x4b270)  # mov ecx, dword [esp+0x08] ; mov eax, dword [esp+0x04] ; not ecx ; and dword [eax+0x08], ecx ; ret
+struct.pack('<L', 0x6b9d0)  # mov ecx, dword [esp+0x08] ; mov eax, dword [esp+0x04] ; not ecx ; and dword [eax+0x14], ecx ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x39150)  # mov ecx, dword [esp+0x08] ; mov eax, dword [esp+0x04] ; not ecx ; and dword [eax+0x14], ecx ; ret
+struct.pack('<L', 0x441a5)  # mov ecx, eax ; mov eax, dword [esi] ; pop edi ; xor eax, ecx ; pop esi ; ret
+struct.pack('<L', 0x443c2)  # mov edi, dword [esp+0x30] ; mov eax, dword [esp+0x14] ; mov ecx, dword [eax+esi*4] ; push edi ; push ecx ; call ebx
+struct.pack('<L', 0x5c4c0)  # mov edi, eax ; mov eax, dword [ecx] ; push 0x00000000 ; push edx ; call eax
+struct.pack('<L', 0x42fd1)  # mov edi, eax ; mov eax, dword [edx+0x1C] ; push esi ; call eax
+struct.pack('<L', 0x65dd0)  # mov edi, eax ; mov eax, dword [esp+0x1C] ; push edi ; push eax ; push ebp ; call ecx
+struct.pack('<L', 0x435a0)  # mov edx, dword [0x100E3B14] ; mov eax, dword [edx+0x0C] ; push esi ; call eax
+struct.pack('<L', 0x42812)  # mov edx, dword [0x100E3B14] ; mov eax, dword [edx+0x18] ; lea ecx, dword [esp+0x2C] ; push ecx ; call eax
+struct.pack('<L', 0x42fcb)  # mov edx, dword [0x100E3B14] ; mov edi, eax ; mov eax, dword [edx+0x1C] ; push esi ; call eax
+struct.pack('<L', 0x450ea)  # mov edx, dword [eax+0x04] ; mov eax, dword [edx+0x08] ; pop edi ; add esp, 0x08 ; ret
+struct.pack('<L', 0x4427e)  # mov edx, dword [eax+0x08] ; mov eax, dword [eax+0x04] ; mov dword [esp+0x08], edx ; mov dword [esp+0x04], ecx ; jmp eax
+struct.pack('<L', 0x579ed)  # mov edx, dword [eax+0x14] ; mov eax, dword [esp+0x04] ; mov dword [eax], edx ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x57ab7)  # mov edx, dword [eax+0x14] ; mov eax, dword [esp+0x04] ; mov dword [eax], edx ; ret
+struct.pack('<L', 0x3ab4a)  # mov edx, dword [eax+0x20] ; mov eax, dword [esp+0x14] ; push edx ; push eax ; push esi ; call dword [0x1009313C]
+struct.pack('<L', 0x53f71)  # mov edx, dword [ecx+0x08] ; mov eax, dword [edx+0x08] ; ret
+struct.pack('<L', 0x53fa1)  # mov edx, dword [ecx+0x0C] ; mov eax, dword [edx+0x08] ; ret
+struct.pack('<L', 0x2bc9b)  # mov edx, dword [ecx+0x18] ; mov dword [eax], edx ; mov eax, dword [esp+0x08] ; mov dword [ecx+0x18], eax ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x8cf0)  # mov edx, dword [ecx] ; mov eax, dword [ecx+0x04] ; bswap edx ; bswap eax ; ret
+struct.pack('<L', 0x5c4bd)  # mov edx, dword [esi+0x04] ; mov edi, eax ; mov eax, dword [ecx] ; push 0x00000000 ; push edx ; call eax
+struct.pack('<L', 0x44128)  # mov edx, dword [esi+0x08] ; mov eax, dword [eax+0x04] ; push ecx ; push edx ; call eax
+struct.pack('<L', 0x7862a)  # mov edx, dword [esi+0x14] ; mov eax, dword [esp+0x0C] ; mov dword [edx+0x08], eax ; mov eax, 0x00000001 ; pop esi ; ret
+struct.pack('<L', 0x7864e)  # mov edx, dword [esi+0x14] ; mov eax, dword [esp+0x0C] ; mov dword [edx+0x14], eax ; mov eax, 0x00000001 ; pop esi ; ret
+struct.pack('<L', 0x3f6eb)  # mov edx, dword [esi+0x20] ; mov eax, dword [edx+0x08] ; pop edi ; pop esi ; pop ebx ; ret
+struct.pack('<L', 0x3777a)  # mov edx, dword [esi] ; mov eax, dword [edx+0x5C] ; push ebp ; push ebx ; push esi ; call eax
+struct.pack('<L', 0x5a607)  # mov edx, dword [esp+0x04] ; add ecx, dword [edx] ; mov edx, dword [esp+0x08] ; mov eax, dword [ecx] ; mov dword [ecx], edx ; ret
+struct.pack('<L', 0x75aea)  # mov edx, dword [esp+0x04] ; lea ecx, dword [esp+0x04] ; mov dword [esp+0x0C], eax ; mov eax, dword [edx+0x10] ; push ecx ; call eax
+struct.pack('<L', 0x5a5e7)  # mov edx, dword [esp+0x04] ; mov eax, dword [edx] ; mov eax, dword [ecx+eax] ; ret
+struct.pack('<L', 0x4f60f)  # mov edx, dword [esp+0x08] ; mov dword [eax], edx ; mov ecx, dword [esp+0x04] ; mov eax, dword [esp+0x0C] ; mov dword [ecx+0x04], eax ; ret
+struct.pack('<L', 0x6acff)  # mov edx, dword [esp+0x08] ; mov dword [esp+0x08], eax ; mov eax, dword [eax+0x08] ; pop esi ; mov dword [esp+0x08], edx ; jmp eax
+struct.pack('<L', 0x835e4)  # mov edx, dword [esp+0x08] ; mov eax, dword [ecx+0x08] ; mov dword [ecx+0x08], edx ; ret
+struct.pack('<L', 0x2b8c4)  # mov edx, dword [esp+0x08] ; mov eax, dword [ecx] ; mov dword [ecx], edx ; ret
+struct.pack('<L', 0x5f2d6)  # mov edx, dword [esp+0x08] ; mov eax, dword [edx] ; mov ecx, dword [ecx] ; sub ecx, dword [eax] ; mov eax, ecx ; ret
+struct.pack('<L', 0x66163)  # mov edx, dword [esp+0x08] ; mov eax, dword [esi+0x38] ; push ebx ; push edx ; push esi ; call eax
+struct.pack('<L', 0x2184b)  # mov edx, dword [esp+0x08] ; push eax ; mov eax, dword [eax+0x08] ; push ecx ; push edx ; call eax
+struct.pack('<L', 0x460e5)  # mov edx, dword [esp+0x10] ; mov ecx, dword [esi] ; mov eax, dword [ecx+0x18] ; push edx ; push esi ; call eax
+struct.pack('<L', 0x22226)  # mov edx, dword [esp+0x14] ; mov eax, dword [esi+0x08] ; push esi ; push edx ; push 0x00000000 ; call eax
+struct.pack('<L', 0x5237c)  # mov edx, dword [esp+0x18] ; mov dword [edx], eax ; mov eax, dword [esp+0x04] ; add esp, 0x14 ; ret
+struct.pack('<L', 0x2afbc)  # mov edx, dword [esp+0x18] ; push eax ; mov eax, dword [ecx+0x0C] ; push edx ; call eax
+struct.pack('<L', 0x57d91)  # mov esi, dword [esp+0x0C] ; mov eax, dword [esi+0x10] ; call eax
+struct.pack('<L', 0x5214d)  # mov esi, ecx ; push esi ; push eax ; mov eax, dword [esp+0x1C] ; push eax ; call ebx
+struct.pack('<L', 0x83b47)  # movsx edx, byte [edi] ; mov eax, dword [esi+0x18] ; push edx ; push eax ; call ebx
+struct.pack('<L', 0x72e11)  # or al, 0x01 ; pop es ; mov eax, dword [esi] ; pop esi ; pop edi ; ret
+struct.pack('<L', 0x42cd3)  # or al, 0x24 ; mov dword [esp], eax ; mov eax, dword [edx+0x08] ; push ecx ; call eax
+struct.pack('<L', 0x2ce62)  # or al, 0x50 ; mov eax, dword [esi+0x0C] ; push eax ; push ebx ; push esi ; call ecx
+struct.pack('<L', 0x6c20e)  # or al, 0x52 ; mov dword [esp+0x10], eax ; mov eax, dword [esi+0x18] ; push ebx ; call eax
+struct.pack('<L', 0x83a37)  # or al, 0x8B ; add dword [eax-0x7D], ecx ; clc  ; add dword [edi+0x04], esi ; mov eax, dword [ecx+0x0C] ; ret
+struct.pack('<L', 0x83a77)  # or al, 0x8B ; add dword [eax-0x7D], ecx ; clc  ; add dword [edi+0x04], esi ; mov eax, dword [ecx+0x10] ; ret
+struct.pack('<L', 0x83a97)  # or al, 0x8B ; add dword [eax-0x7D], ecx ; clc  ; add dword [edi+0x04], esi ; mov eax, dword [ecx+0x14] ; ret
+struct.pack('<L', 0x75551)  # or al, 0xC3 ; mov eax, dword [eax+0x10] ; ret
+struct.pack('<L', 0x42ce7)  # or bl, al ; mov eax, dword [eax+0x04] ; add esp, 0x08 ; ret
+struct.pack('<L', 0x19d50)  # or byte [0x00FF00FF], ah ; or edx, eax ; mov dword [esi+0x08], ecx ; mov dword [esi+0x0C], edx ; mov eax, dword [ebp+0x00000114] ; call eax
+struct.pack('<L', 0x759f4)  # or byte [eax], al ; add byte [ebx+0x100E3C0C], ah ; mov eax, dword [eax+0x08] ; lea edx, dword [esp+0x04] ; push edx ; call eax
+struct.pack('<L', 0x1958)  # or byte [eax], al ; mov eax, dword [0x100E19E0] ; xor eax, esp ; mov dword [esp+0x00000104], eax ; push 0xFFFFFFF4 ; call dword [0x100930B0]
+struct.pack('<L', 0x444c)  # or byte [eax], al ; mov eax, dword [esi] ; add esp, 0x0C ; push eax ; push ebx ; call dword [0x100930A0]
+struct.pack('<L', 0x67051)  # or byte [ebp+0x561C75C0], al ; push eax ; mov eax, dword [esi+0x20] ; mov dword [esi+0x5C], 0x0000000D ; mov dword [esi+0x60], edi ; call eax
+struct.pack('<L', 0x53f65)  # or byte [ebp-0x74FB8B37], al ; add byte [ecx+0x584A8B01], cl ; mov edx, dword [ecx+0x08] ; mov eax, dword [edx+0x08] ; ret
+struct.pack('<L', 0x53f95)  # or byte [ebp-0x74FB8B37], al ; add byte [ecx+0x584A8B01], cl ; mov edx, dword [ecx+0x0C] ; mov eax, dword [edx+0x08] ; ret
+struct.pack('<L', 0x5a5e3)  # or byte [ebx+0x548B0448], cl ; and al, 0x04 ; mov eax, dword [edx] ; mov eax, dword [ecx+eax] ; ret
+struct.pack('<L', 0x5c4bc)  # or byte [ebx-0x0774FBAA], cl ; mov eax, dword [ecx] ; push 0x00000000 ; push edx ; call eax
+struct.pack('<L', 0x58352)  # or byte [ecx-0x77], dl ; inc esp ; and al, 0x30 ; mov eax, dword [edx+0x10] ; push 0xFFFFFFFF ; call eax
+struct.pack('<L', 0x3f07)  # or byte [edx+0x56], dl ; push ebx ; push eax ; mov eax, dword [esp+0x2C] ; push eax ; call ecx
+struct.pack('<L', 0x75bb8)  # or byte [edx+0x57], dl ; push eax ; mov eax, dword [ecx+0x14] ; call eax
+struct.pack('<L', 0x68c33)  # or byte [esi-0x3D], bl ; mov eax, dword [esi+0x08] ; pop esi ; ret
+struct.pack('<L', 0x842b0)  # or dword [eax], edx ; push eax ; mov eax, dword [0x100E3C38] ; push 0x100B95E0 ; push eax ; call ebx
+struct.pack('<L', 0x7906f)  # or dword [ebx+0x04750438], eax ; mov eax, dword [eax+0x04] ; ret
+struct.pack('<L', 0x43b80)  # or ecx, 0xFFFFFFF0 ; inc ecx ; mov eax, dword [eax+ecx*4+0x44] ; ret
+struct.pack('<L', 0x19d56)  # or edx, eax ; mov dword [esi+0x08], ecx ; mov dword [esi+0x0C], edx ; mov eax, dword [ebp+0x00000114] ; call eax
+struct.pack('<L', 0x53f70)  # pop eax ; mov edx, dword [ecx+0x08] ; mov eax, dword [edx+0x08] ; ret
+struct.pack('<L', 0x53fa0)  # pop eax ; mov edx, dword [ecx+0x0C] ; mov eax, dword [edx+0x08] ; ret
+struct.pack('<L', 0x2713e)  # pop ebp ; mov eax, dword [esp+0x08] ; pop ebx ; pop edi ; add esp, 0x08 ; ret
+struct.pack('<L', 0x264f9)  # pop ebp ; mov eax, dword [esp+0x0C] ; pop ebx ; pop edi ; add esp, 0x08 ; ret
+struct.pack('<L', 0x884da)  # pop ecx ; xchg eax, esp ; mov eax, dword [eax] ; mov dword [esp], eax ; ret
+struct.pack('<L', 0x6bfff)  # pop edi ; mov eax, dword [esp+0x10] ; pop esi ; ret
+struct.pack('<L', 0x44b89)  # pop es ; mov eax, dword [eax+0x04] ; add esp, 0x20 ; ret
+struct.pack('<L', 0x75e18)  # pop es ; mov eax, dword [eax+0x08] ; add esp, 0x0C ; ret
+struct.pack('<L', 0x85c4e)  # pop es ; mov eax, dword [edi+esi*4+0x04] ; pop esi ; pop edi ; ret
+struct.pack('<L', 0x57ef2)  # pop es ; mov eax, dword [edx+0x14] ; mov dword [esi], eax ; pop esi ; ret
+struct.pack('<L', 0x5a5c5)  # pop es ; mov eax, dword [esi] ; pop esi ; add esp, 0x1C ; ret
+struct.pack('<L', 0x72e13)  # pop es ; mov eax, dword [esi] ; pop esi ; pop edi ; ret
+struct.pack('<L', 0x31387)  # pop es ; push eax ; mov eax, dword [ecx+0x00000080] ; push edx ; push esi ; call eax
+struct.pack('<L', 0x717c0)  # pop esi ; mov eax, dword [esp+0x14] ; pop edi ; pop ebx ; ret
+struct.pack('<L', 0x65e35)  # pop esp ; mov eax, dword [ecx+0x20] ; push 0x00000000 ; mov dword [ecx+0x60], esi ; mov dword [ecx+0x64], edi ; call eax
+struct.pack('<L', 0x8bc04)  # pop ss ; mov eax, dword [0x2B6ED9EB] ; ret
+struct.pack('<L', 0x83b49)  # pop ss ; mov eax, dword [esi+0x18] ; push edx ; push eax ; call ebx
+struct.pack('<L', 0x460ea)  # push cs ; mov eax, dword [ecx+0x18] ; push edx ; push esi ; call eax
+struct.pack('<L', 0x7588c)  # push cs ; mov eax, dword [ecx+0x1C] ; inc edi ; push edx ; push esi ; call eax
+struct.pack('<L', 0x395b1)  # push cs ; mov eax, dword [ecx+0x24] ; push edx ; push ebx ; push esi ; call eax
+struct.pack('<L', 0x4c15)  # push ds ; mov eax, dword [0xC16ED9EB] ; ret
+struct.pack('<L', 0x1d1a)  # push dword [ebp+0x24] ; mov eax, dword [esi+0x04] ; push 0x0000011D ; push 0x1009350C ; push eax ; call dword [0x100E1AA4]
+struct.pack('<L', 0x842b2)  # push eax ; mov eax, dword [0x100E3C38] ; push 0x100B95E0 ; push eax ; call ebx
+struct.pack('<L', 0x7565d)  # push eax ; mov eax, dword [eax+0x04] ; call eax
+struct.pack('<L', 0x2184f)  # push eax ; mov eax, dword [eax+0x08] ; push ecx ; push edx ; call eax
+struct.pack('<L', 0x836c1)  # push eax ; mov eax, dword [ebx+0x08] ; push esi ; call eax
+struct.pack('<L', 0x2f7c0)  # push eax ; mov eax, dword [ecx+0x00000080] ; push edi ; call eax
+struct.pack('<L', 0x313ae)  # push eax ; mov eax, dword [ecx+0x00000080] ; push edx ; push edi ; push esi ; call eax
+struct.pack('<L', 0x31388)  # push eax ; mov eax, dword [ecx+0x00000080] ; push edx ; push esi ; call eax
+struct.pack('<L', 0x31465)  # push eax ; mov eax, dword [ecx+0x00000080] ; push esi ; call eax
+struct.pack('<L', 0x36861)  # push eax ; mov eax, dword [ecx+0x00000088] ; push edx ; push ebx ; push edi ; call eax
+struct.pack('<L', 0x31338)  # push eax ; mov eax, dword [ecx+0x0000008C] ; push esi ; call eax
+struct.pack('<L', 0x2f494)  # push eax ; mov eax, dword [ecx+0x00000090] ; push esi ; call eax
+struct.pack('<L', 0x2afc0)  # push eax ; mov eax, dword [ecx+0x0C] ; push edx ; call eax
+struct.pack('<L', 0x75bbb)  # push eax ; mov eax, dword [ecx+0x14] ; call eax
+struct.pack('<L', 0x58959)  # push eax ; mov eax, dword [ecx+0x14] ; push ebx ; push edx ; push esi ; call eax
+struct.pack('<L', 0x3720f)  # push eax ; mov eax, dword [edx+0x00000080] ; push esi ; call eax
+struct.pack('<L', 0x46b81)  # push eax ; mov eax, dword [edx+0x14] ; push esi ; call eax
+struct.pack('<L', 0x27405)  # push eax ; mov eax, dword [edx+0x18] ; push ecx ; push ebx ; push ebp ; call eax
+struct.pack('<L', 0x2ce63)  # push eax ; mov eax, dword [esi+0x0C] ; push eax ; push ebx ; push esi ; call ecx
+struct.pack('<L', 0x581d0)  # push eax ; mov eax, dword [esi+0x10] ; call eax
+struct.pack('<L', 0x6613a)  # push eax ; mov eax, dword [esi+0x20] ; mov dword [esi+0x5C], 0x00000003 ; call eax
+struct.pack('<L', 0x66f08)  # push eax ; mov eax, dword [esi+0x20] ; mov dword [esi+0x5C], 0x00000006 ; call eax
+struct.pack('<L', 0x67057)  # push eax ; mov eax, dword [esi+0x20] ; mov dword [esi+0x5C], 0x0000000D ; mov dword [esi+0x60], edi ; call eax
+struct.pack('<L', 0x4028f)  # push eax ; mov eax, dword [esi] ; push 0x00000004 ; push eax ; push ecx ; call dword [0x10093148]
+struct.pack('<L', 0x2afff)  # push eax ; mov eax, dword [esp+0x10] ; push edx ; push eax ; call ecx
+struct.pack('<L', 0x517e3)  # push eax ; mov eax, dword [esp+0x10] ; push esi ; push 0x00000001 ; push eax ; call dword [0x10093120]
+struct.pack('<L', 0x2dffd)  # push eax ; mov eax, dword [esp+0x18] ; push eax ; push edx ; push esi ; call ecx
+struct.pack('<L', 0x52150)  # push eax ; mov eax, dword [esp+0x1C] ; push eax ; call ebx
+struct.pack('<L', 0x2e14c)  # push eax ; mov eax, dword [esp+0x1C] ; push eax ; push edx ; push esi ; call ecx
+struct.pack('<L', 0x30ef7)  # push eax ; mov eax, dword [esp+0x20] ; push eax ; push edi ; call dword [esp+0x30]
+struct.pack('<L', 0x41bf)  # push eax ; mov eax, dword [esp+0x2C] ; push eax ; call ecx
+struct.pack('<L', 0x31464)  # push eax ; push eax ; mov eax, dword [ecx+0x00000080] ; push esi ; call eax
+struct.pack('<L', 0x31337)  # push eax ; push eax ; mov eax, dword [ecx+0x0000008C] ; push esi ; call eax
+struct.pack('<L', 0x2f491)  # push ebx ; add al, 0x52 ; push eax ; mov eax, dword [ecx+0x00000090] ; push esi ; call eax
+struct.pack('<L', 0x3720e)  # push ebx ; push eax ; mov eax, dword [edx+0x00000080] ; push esi ; call eax
+struct.pack('<L', 0x41be)  # push ebx ; push eax ; mov eax, dword [esp+0x2C] ; push eax ; call ecx
+struct.pack('<L', 0x3149e)  # push ebx ; push eax ; push eax ; mov eax, dword [ecx+0x00000080] ; push esi ; call eax
+struct.pack('<L', 0x46b7f)  # push ebx ; push edi ; push eax ; mov eax, dword [edx+0x14] ; push esi ; call eax
+struct.pack('<L', 0x2f4b5)  # push ebx ; sbb byte [edx+0x50], dl ; mov eax, dword [ecx+0x00000090] ; push esi ; call eax
+struct.pack('<L', 0x58353)  # push ecx ; mov dword [esp+0x30], eax ; mov eax, dword [edx+0x10] ; push 0xFFFFFFFF ; call eax
+struct.pack('<L', 0x2da70)  # push edi ; mov eax, dword [esi+0x04] ; mov ecx, dword [esi+0x0C] ; mov edi, dword [esi] ; push eax ; call ecx
+struct.pack('<L', 0x2dab0)  # push edi ; mov eax, dword [esi+0x04] ; mov ecx, dword [esi+0x10] ; mov edi, dword [esi] ; push eax ; call ecx
+struct.pack('<L', 0x75bba)  # push edi ; push eax ; mov eax, dword [ecx+0x14] ; call eax
+struct.pack('<L', 0x46b80)  # push edi ; push eax ; mov eax, dword [edx+0x14] ; push esi ; call eax
+struct.pack('<L', 0x6c20f)  # push edx ; mov dword [esp+0x10], eax ; mov eax, dword [esi+0x18] ; push ebx ; call eax
+struct.pack('<L', 0x2afbb)  # push edx ; mov edx, dword [esp+0x18] ; push eax ; mov eax, dword [ecx+0x0C] ; push edx ; call eax
+struct.pack('<L', 0x2f7bf)  # push edx ; push eax ; mov eax, dword [ecx+0x00000080] ; push edi ; call eax
+struct.pack('<L', 0x2f493)  # push edx ; push eax ; mov eax, dword [ecx+0x00000090] ; push esi ; call eax
+struct.pack('<L', 0x371b6)  # push edx ; push eax ; push eax ; mov eax, dword [ecx+0x00000080] ; push esi ; call eax
+struct.pack('<L', 0x31336)  # push edx ; push eax ; push eax ; mov eax, dword [ecx+0x0000008C] ; push esi ; call eax
+struct.pack('<L', 0x75bb9)  # push edx ; push edi ; push eax ; mov eax, dword [ecx+0x14] ; call eax
+struct.pack('<L', 0x57d10)  # push es ; add eax, dword [eax] ; add byte [ebp+0x2F], dh ; mov eax, dword [ecx+0x10] ; call eax
+struct.pack('<L', 0x1cff7)  # push es ; mov eax, dword [0x100E1E60] ; ret
+struct.pack('<L', 0x1d002)  # push es ; mov eax, dword [0x100E1E68] ; ret
+struct.pack('<L', 0x6cf71)  # push es ; mov eax, dword [eax] ; add esp, 0x3C ; ret
+struct.pack('<L', 0x5e7c2)  # push es ; mov eax, dword [edi+0x04] ; sub eax, dword [ebx+0x04] ; pop edi ; pop ebx ; ret
+struct.pack('<L', 0x16d0)  # push es ; mov eax, dword [esi+0x04] ; pop edi ; pop esi ; ret
+struct.pack('<L', 0x3ff47)  # push es ; mov eax, dword [esi] ; pop ebx ; mov dword [esi+0x08], 0x00000000 ; pop esi ; ret
+struct.pack('<L', 0x39648)  # push es ; mov eax, dword [esp+0x0C] ; pop esi ; ret
+struct.pack('<L', 0x57d90)  # push esi ; mov esi, dword [esp+0x0C] ; mov eax, dword [esi+0x10] ; call eax
+struct.pack('<L', 0x66139)  # push esi ; push eax ; mov eax, dword [esi+0x20] ; mov dword [esi+0x5C], 0x00000003 ; call eax
+struct.pack('<L', 0x66f07)  # push esi ; push eax ; mov eax, dword [esi+0x20] ; mov dword [esi+0x5C], 0x00000006 ; call eax
+struct.pack('<L', 0x67056)  # push esi ; push eax ; mov eax, dword [esi+0x20] ; mov dword [esi+0x5C], 0x0000000D ; mov dword [esi+0x60], edi ; call eax
+struct.pack('<L', 0x2affe)  # push esi ; push eax ; mov eax, dword [esp+0x10] ; push edx ; push eax ; call ecx
+struct.pack('<L', 0x5214f)  # push esi ; push eax ; mov eax, dword [esp+0x1C] ; push eax ; call ebx
+struct.pack('<L', 0x41bd)  # push esi ; push ebx ; push eax ; mov eax, dword [esp+0x2C] ; push eax ; call ecx
+struct.pack('<L', 0x5a5e8)  # push esp ; and al, 0x04 ; mov eax, dword [edx] ; mov eax, dword [ecx+eax] ; ret
+struct.pack('<L', 0x835e5)  # push esp ; and al, 0x08 ; mov eax, dword [ecx+0x08] ; mov dword [ecx+0x08], edx ; ret
+struct.pack('<L', 0x2b8c5)  # push esp ; and al, 0x08 ; mov eax, dword [ecx] ; mov dword [ecx], edx ; ret
+struct.pack('<L', 0x5237d)  # push esp ; and al, 0x18 ; mov dword [edx], eax ; mov eax, dword [esp+0x04] ; add esp, 0x14 ; ret
+struct.pack('<L', 0x2afbd)  # push esp ; and al, 0x18 ; push eax ; mov eax, dword [ecx+0x0C] ; push edx ; call eax
+struct.pack('<L', 0x43576)  # push ss ; mov eax, dword [0x100E3B14] ; mov ecx, dword [eax+0x0C] ; push esi ; call ecx
+struct.pack('<L', 0x3777b)  # push ss ; mov eax, dword [edx+0x5C] ; push ebp ; push ebx ; push esi ; call eax
+struct.pack('<L', 0x484f7)  # pushad  ; mov eax, dword [esp+0x10] ; mov edx, dword [ecx] ; mov dword [eax], edx ; mov eax, 0x00000001 ; ret
+struct.pack('<L', 0x4c14)  # pushfd  ; push ds ; mov eax, dword [0xC16ED9EB] ; ret
+struct.pack('<L', 0x2f81e)  # rcr byte [eax], 0x00000050 ; mov eax, dword [ecx+0x00000080] ; push edx ; push edi ; call eax
+struct.pack('<L', 0x65d9c)  # rcr byte [ebx+0x59], 0xFFFFFFC3 ; mov eax, dword [esp+0x04] ; ret
+struct.pack('<L', 0x5f4fc)  # rcr byte [esi+0x59], 0xFFFFFFC3 ; mov eax, dword [esi] ; pop esi ; pop ecx ; ret
+struct.pack('<L', 0x16d9)  # rcr byte [esi-0x3D], 0xFFFFFFCC ; int3  ; int3  ; int3  ; mov eax, dword [0x100E1A9C] ; ret
+struct.pack('<L', 0x83a59)  # rol bl, 0xFFFFFF8B ; add dword [ebx-0x098AFD18], eax ; mov eax, dword [ecx+0x18] ; ret
+struct.pack('<L', 0x42fb9)  # rol byte [ebx+eax*4], 0xFFFFFFE9 ; add dword [ebp-0x0D], esi ; mov eax, dword [0x100E3B14] ; mov ecx, dword [eax+0x20] ; push esi ; call ecx
+struct.pack('<L', 0x441a1)  # rol byte [ebx-0x3774F33C], cl ; mov eax, dword [esi] ; pop edi ; xor eax, ecx ; pop esi ; ret
+struct.pack('<L', 0x3591e)  # rol ebx, 0xFFFFFF8B ; inc esp ; and al, 0x04 ; mov eax, dword [eax+0x0C] ; ret
+struct.pack('<L', 0x79db1)  # sal byte [ebp+0x01], 0xFFFFFFC3 ; mov eax, dword [eax+0x04] ; ret
+struct.pack('<L', 0x27cd5)  # sal byte [ebp+0x01], 0xFFFFFFC3 ; mov eax, dword [eax+0x08] ; mov eax, dword [eax+0x24] ; ret
+struct.pack('<L', 0x839f5)  # sal byte [ebp+0x01], 0xFFFFFFC3 ; mov eax, dword [eax+0x08] ; ret
+struct.pack('<L', 0x75535)  # sal byte [ebp+0x01], 0xFFFFFFC3 ; mov eax, dword [eax+0x0C] ; ret
+struct.pack('<L', 0x39755)  # sal byte [ebp+0x01], 0xFFFFFFC3 ; mov eax, dword [eax+0x24] ; ret
+struct.pack('<L', 0x755c5)  # sal byte [ebp+0x01], 0xFFFFFFC3 ; mov eax, dword [eax] ; mov eax, dword [eax+0x04] ; ret
+struct.pack('<L', 0x755d5)  # sal byte [ebp+0x01], 0xFFFFFFC3 ; mov eax, dword [eax] ; mov eax, dword [eax+0x08] ; ret
+struct.pack('<L', 0x65175)  # sal byte [ebp+0x01], 0xFFFFFFC3 ; mov eax, dword [eax] ; mov ecx, dword [eax+0x18] ; mov eax, dword [ecx+0x04] ; ret
+struct.pack('<L', 0x68be5)  # sal byte [ebp+0x01], 0xFFFFFFC3 ; mov eax, dword [eax] ; ret
+struct.pack('<L', 0x75655)  # sal byte [ebp+0x05], 0xFFFFFFE8 ; mov bl, 0x0B ; add byte [eax], al ; push eax ; mov eax, dword [eax+0x04] ; call eax
+struct.pack('<L', 0x66f04)  # sal byte [ebp+0x10], 0x00000056 ; push eax ; mov eax, dword [esi+0x20] ; mov dword [esi+0x5C], 0x00000006 ; call eax
+struct.pack('<L', 0x66136)  # sal byte [ebp+0x13], 0x00000056 ; push eax ; mov eax, dword [esi+0x20] ; mov dword [esi+0x5C], 0x00000003 ; call eax
+struct.pack('<L', 0x67053)  # sal byte [ebp+0x1C], 0x00000056 ; push eax ; mov eax, dword [esi+0x20] ; mov dword [esi+0x5C], 0x0000000D ; mov dword [esi+0x60], edi ; call eax
+struct.pack('<L', 0x6c43f)  # sal byte [ebp+ecx-0x7D], 0x00000038 ; add byte [eax+ecx-0x77], dh ; dec esp ; and al, 0x04 ; mov eax, dword [eax] ; jmp eax
+struct.pack('<L', 0x2fa28)  # sal byte [ecx+esi+0x56], 0xFFFFFF8D ; mov eax, dword [eax+eax+0x57510000] ; push ebx ; call eax
+struct.pack('<L', 0x41d60)  # salc  ; mov dword [esp+0x20], eax ; mov eax, dword [esp+0x28] ; push 0x100A84DC ; push eax ; call esi
+struct.pack('<L', 0x83fd6)  # salc  ; mov eax, dword [0x100E3C50] ; push eax ; push 0x00000002 ; call esi
+struct.pack('<L', 0x5f4f8)  # sar byte [edi+0x05], 0x00000033 ; rcr byte [esi+0x59], 0xFFFFFFC3 ; mov eax, dword [esi] ; pop esi ; pop ecx ; ret
+struct.pack('<L', 0x2e14b)  # sbb al, 0x50 ; mov eax, dword [esp+0x1C] ; push eax ; push edx ; push esi ; call ecx
+struct.pack('<L', 0x67055)  # sbb al, 0x56 ; push eax ; mov eax, dword [esi+0x20] ; mov dword [esi+0x5C], 0x0000000D ; mov dword [esi+0x60], edi ; call eax
+struct.pack('<L', 0x2da6f)  # sbb al, 0x57 ; mov eax, dword [esi+0x04] ; mov ecx, dword [esi+0x0C] ; mov edi, dword [esi] ; push eax ; call ecx
+struct.pack('<L', 0x2daaf)  # sbb al, 0x57 ; mov eax, dword [esi+0x04] ; mov ecx, dword [esi+0x10] ; mov edi, dword [esi] ; push eax ; call ecx
+struct.pack('<L', 0x78d7c)  # sbb byte [ebp+0x08], dh ; mov eax, dword [esi+0x14] ; mov eax, dword [eax+0x10] ; pop esi ; ret
+struct.pack('<L', 0x3149d)  # sbb byte [ebx+0x50], dl ; push eax ; mov eax, dword [ecx+0x00000080] ; push esi ; call eax
+struct.pack('<L', 0x2f4b0)  # sbb byte [ebx+0x538D570E], cl ; sbb byte [edx+0x50], dl ; mov eax, dword [ecx+0x00000090] ; push esi ; call eax
+struct.pack('<L', 0x42fb7)  # sbb byte [ebx-0x167CFB40], al ; add dword [ebp-0x0D], esi ; mov eax, dword [0x100E3B14] ; mov ecx, dword [eax+0x20] ; push esi ; call ecx
+struct.pack('<L', 0x2f4b6)  # sbb byte [edx+0x50], dl ; mov eax, dword [ecx+0x00000090] ; push esi ; call eax
+struct.pack('<L', 0x842ad)  # sbb eax, 0x10093108 ; push eax ; mov eax, dword [0x100E3C38] ; push 0x100B95E0 ; push eax ; call ebx
+struct.pack('<L', 0x42ccf)  # shl eax, 0x18 ; lea ecx, dword [esp] ; mov dword [esp], eax ; mov eax, dword [edx+0x08] ; push ecx ; call eax
+struct.pack('<L', 0x43b79)  # sldt word [eax] ; cmp byte [ecx+0x05], 0x00000049 ; or ecx, 0xFFFFFFF0 ; inc ecx ; mov eax, dword [eax+ecx*4+0x44] ; ret
+struct.pack('<L', 0x83d9c)  # stc  ; add dword [edi-0x1E], esi ; mov eax, dword [eax+0x0C] ; pop edi ; pop esi ; ret
+struct.pack('<L', 0x68c2f)  # std  ; inc dword [ebx-0x3CA1F73C] ; mov eax, dword [esi+0x08] ; pop esi ; ret
+struct.pack('<L', 0x837c5)  # sti  ; inc dword [ebx-0x377CEB3C] ; inc ebx ; mov eax, dword [edx+0x14] ; and eax, 0x01 ; ret
+struct.pack('<L', 0x58958)  # sub al, 0x50 ; mov eax, dword [ecx+0x14] ; push ebx ; push edx ; push esi ; call eax
+struct.pack('<L', 0x30ef6)  # sub al, 0x50 ; mov eax, dword [esp+0x20] ; push eax ; push edi ; call dword [esp+0x30]
+struct.pack('<L', 0x444a)  # test byte [eax+0x08], 0x00000000 ; mov eax, dword [esi] ; add esp, 0x0C ; push eax ; push ebx ; call dword [0x100930A0]
+struct.pack('<L', 0x884db)  # xchg eax, esp ; mov eax, dword [eax] ; mov dword [esp], eax ; ret
+struct.pack('<L', 0x2fa2a)  # xor dword [esi-0x73], edx ; mov eax, dword [eax+eax+0x57510000] ; push ebx ; call eax
+struct.pack('<L', 0x435fb)  # xor eax, 0x1C74100E ; mov eax, dword [0x100E3B14] ; or dword [esi], 0x02000000 ; mov ecx, dword [eax+0x0C] ; push esi ; call ecx
+struct.pack('<L', 0x2da6b)  # xor eax, dword [ebp+0x571C74F6] ; mov eax, dword [esi+0x04] ; mov ecx, dword [esi+0x0C] ; mov edi, dword [esi] ; push eax ; call ecx
+struct.pack('<L', 0x2daab)  # xor eax, dword [ebp+0x571C74F6] ; mov eax, dword [esi+0x04] ; mov ecx, dword [esi+0x10] ; mov edi, dword [esi] ; push eax ; call ecx
