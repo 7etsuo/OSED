@@ -20,7 +20,6 @@
 # Stack Buffer Overflow Resources
 - Wikipedia Articles:
   - [English](https://en.wikipedia.org/wiki/Stack_buffer_overflow)
-  - [Portuguese](https://pt.wikipedia.org/wiki/Transbordamento_de_dados)
 - [Stack-based Buffer Overflow Attacks - Rapid7 Blog](https://www.rapid7.com/blog/post/2019/02/19/stack-based-buffer-overflow-attacks-what-you-need-to-know/)
 - [CWE-121: Stack-based Buffer Overflow - MITRE](https://cwe.mitre.org/data/definitions/121.html)
 - [Understanding & Exploiting Stack-based Buffer Overflows - Medium](https://sghosh2402.medium.com/understanding-exploiting-stack-based-buffer-overflows-acf9b8659cba)
